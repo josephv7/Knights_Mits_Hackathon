@@ -1,3 +1,2 @@
-exports.SCOPE =
-  "report: vitamin-a report: vitamin-b report: vitamin-d report:vitamin-b12";
+exports.SCOPE = "eye-color beard-thickness morning-person";
 exports.AUTH = "Bearer GENOMELINKTEST001";

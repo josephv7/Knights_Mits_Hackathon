@@ -3,14 +3,20 @@ const fetch = require("node-fetch");
 
 class GenomeLink {
   static getTraits(req, res) {
-    fetch(`https://genomelink.io/v1/?population=european`, {
-      headers: {
-        Authorization: constant.AUTH
-      }
-    })
-      .then(response => response.json())
-      .then(response => res.send(response))
-      .catch(error => console.log(error));
+    Promise.all(
+      constant.SCOPE.split(" ").map(query => {
+        return fetch(
+          `https://genomelink.io/v1/reports/${query}/?population=european`,
+          {
+            headers: {
+              Authorization: "Bearer GENOMELINKTEST001"
+            }
+          }
+        ).then(res => res.json());
+      })
+    ).then(responses => {
+      res.json(responses);
+    });
   }
 }
 
