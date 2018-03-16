@@ -8,6 +8,15 @@
     "precommit": "lint-staged",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "lint-staged": {
+    "gitDir": "../",
+    "linters": {
+      "*.js": [
+        "prettier --write",
+        "git add"
+      ]
+    }
+  },
   "keywords": [],
   "author": "Boy With Silver Wings <agney@outlook.in>",
   "license": "ISC",
@@ -21,6 +30,7 @@
     "helmet": "^3.9.0",
     "mongodb": "^3.0.4",
     "morgan": "^1.9.0",
+    "node-fetch": "^2.1.1",
     "passport": "^0.4.0",
     "path": "^0.12.7"
   },
