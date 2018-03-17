@@ -64,11 +64,6 @@ public class ObjectRecognition extends AppCompatActivity {
     private int CHECK_IMAGE = 3;
 
 
-//    private StorageReference mStorageRef;
-//    private DatabaseReference mDatabaseRef;
-//    private StorageMetadata metadata;
-
-
     Button camerButton;
 
     @Override
@@ -125,37 +120,6 @@ public class ObjectRecognition extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
-
-
-//        if (requestCode == LOAD_IMAGE && resultCode == RESULT_OK && data != null && data.getData() != null) {
-//            Uri filePath = data.getData();
-//            uploadUri = data.getData();
-//            try {
-//                bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), filePath);
-//
-//                writeToFile(BitMapToString(bitmap),Home.this);
-//                Intent showImage = new Intent(Home.this,ShowSelected.class);
-//                //showImage.putExtra("imageBitmap",BitMapToString(bitmap));
-//                startActivityForResult(showImage,CHECK_IMAGE);
-////                img.setImageBitmap(bitmap);
-//                //dont show here ...show in a different activity
-//
-//
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-//        }
-
-
-//        if (requestCode == CHECK_IMAGE){
-//            if (resultCode == RESULT_OK){
-//                uploadImage();
-//
-//            }else if(resultCode == RESULT_CANCELED){
-//                /////
-//            }
-//        }
 
 
         if(requestCode == TAKE_CAMERA && resultCode == RESULT_OK) {

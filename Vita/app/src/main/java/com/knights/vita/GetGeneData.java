@@ -37,6 +37,8 @@ public class GetGeneData extends AppCompatActivity {
     UrlClass urlClass = new UrlClass();
     String JSON_URL = urlClass.getUrl();
     String dummyUrl = "http://10.90.90.19:3000/recs/1";
+    //finalUrl working
+    String finalUrl;
 
 
     ArrayList<String> mainList;
@@ -76,8 +78,9 @@ public class GetGeneData extends AppCompatActivity {
 
 
 
+        finalUrl = JSON_URL + "/recs/" + Integer.toString(userId);
 //        StringRequest stringRequest = new StringRequest(Request.Method.GET, JSON_URL + "/recs/" + Integer.toString(userId),
-        StringRequest stringRequest = new StringRequest(Request.Method.GET,dummyUrl,
+        StringRequest stringRequest = new StringRequest(Request.Method.GET,finalUrl,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
