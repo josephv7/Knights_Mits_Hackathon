@@ -61,7 +61,7 @@ public class Fit extends AppCompatActivity {
         // screen, as well as to adb logcat.
         initializeLogging();
 
-        button = findViewById(R.id.button);
+        button = (Button) findViewById(R.id.button);
 
 
 

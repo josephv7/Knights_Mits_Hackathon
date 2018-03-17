@@ -68,7 +68,7 @@ public class ObjectRecognition extends AppCompatActivity {
         setContentView(R.layout.activity_object_recognition);
 
 
-        camerButton = findViewById(R.id.cameraButton);
+        camerButton = (Button) findViewById(R.id.cameraButton);
 
 
 
@@ -100,6 +100,8 @@ public class ObjectRecognition extends AppCompatActivity {
 
 
     private void openCamera() {
+
+        Log.d("inside","openCamera");
 
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         File photo = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),  "Pic.jpg");
@@ -137,14 +139,14 @@ public class ObjectRecognition extends AppCompatActivity {
 //        }
 
 
-        if (requestCode == CHECK_IMAGE){
-            if (resultCode == RESULT_OK){
-                uploadImage();
-
-            }else if(resultCode == RESULT_CANCELED){
-                /////
-            }
-        }
+//        if (requestCode == CHECK_IMAGE){
+//            if (resultCode == RESULT_OK){
+//                uploadImage();
+//
+//            }else if(resultCode == RESULT_CANCELED){
+//                /////
+//            }
+//        }
 
 
         if(requestCode == TAKE_CAMERA && resultCode == RESULT_OK) {
@@ -158,7 +160,7 @@ public class ObjectRecognition extends AppCompatActivity {
 
 
             byte[] byteArrayImage;
-            String encodedImage;
+            String encodedImage = "";
 
             try {
                 bitmap = android.provider.MediaStore.Images.Media
@@ -169,6 +171,7 @@ public class ObjectRecognition extends AppCompatActivity {
                 byteArrayImage = baos.toByteArray();
 
                 encodedImage = Base64.encodeToString(byteArrayImage, Base64.DEFAULT);
+                Log.d("encodedImage",encodedImage);
 
                 //img.setImageBitmap(bitmap);
                 //not showing image as already shown in camera view
@@ -189,14 +192,14 @@ public class ObjectRecognition extends AppCompatActivity {
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
 
 
-        if(requestCode == STORAGE_PERMISSION_CODE){
-
-            if(grantResults.length >0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
-                Toast.makeText(this,"Permission granted.Click Selfie Again.",Toast.LENGTH_LONG).show();
-            }else{
-                Toast.makeText(this,"Oops you just denied the permission",Toast.LENGTH_LONG).show();
-            }
-        }
+//        if(requestCode == STORAGE_PERMISSION_CODE){
+//
+//            if(grantResults.length >0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+//                Toast.makeText(this,"Permission granted.Click Selfie Again.",Toast.LENGTH_LONG).show();
+//            }else{
+//                Toast.makeText(this,"Oops you just denied the permission",Toast.LENGTH_LONG).show();
+//            }
+//        }
 
 
 
@@ -297,13 +300,13 @@ public class ObjectRecognition extends AppCompatActivity {
 
 
         Ion.with(getApplicationContext())
-                .load("http://example.com/post")
+                .load(url)
                 .setJsonObjectBody(finalObject)
                 .asJsonObject()
                 .setCallback(new FutureCallback<JsonObject>() {
                     @Override
                     public void onCompleted(Exception e, JsonObject result) {
-                        // do stuff with the result or error
+//                        Log.d("objectdetectionresult",result.toString());
                     }
                 });
 
