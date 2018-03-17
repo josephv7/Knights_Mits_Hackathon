@@ -8,6 +8,7 @@ const path = require("path");
 const logger = require("morgan");
 const cors = require("cors");
 
+const connectMongo = require("./config/MongoConnect");
 const traits = require("./routes/traits");
 
 dotenv.load({ path: ".env" });
@@ -27,6 +28,8 @@ app.get("/", (req, res) => {
 });
 
 app.use("/traits", traits);
+
+connectMongo();
 
 app.listen(app.get("port"), () => {
   console.log(`App running on port ${app.get("port")}`);
