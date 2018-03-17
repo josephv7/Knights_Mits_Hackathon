@@ -17,47 +17,13 @@ import org.json.JSONObject;
 
 public class Home extends AppCompatActivity {
 
-    String JSON_URL = "http://10.90.101.143:3000/";
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, JSON_URL,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-
-
-
-                        try {
-
-                            JSONObject obj = new JSONObject(response);
-
-
-                            Log.d("test","success");
-                            Log.d("sample",obj.toString());
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Log.d("here",".....");
-                        Log.d("here",error.toString());
-                        Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
-                    }
-                });
-
-
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        requestQueue.add(stringRequest);
-
-
 
     }
 }

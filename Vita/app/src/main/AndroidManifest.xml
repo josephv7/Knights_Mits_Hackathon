@@ -17,7 +17,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".Fit" />
-        <activity android:name=".Home"></activity>
+        <activity android:name=".Home" />
+        <activity android:name=".GetGeneData" />
+        <activity android:name=".ObjectRecognition"></activity>
     </application>
 
 </manifest>
