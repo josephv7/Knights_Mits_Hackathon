@@ -14,7 +14,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ObjectRecognition">
+        <activity android:name=".Login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -25,7 +25,7 @@
         <activity android:name=".Home" />
         <activity android:name=".GetGeneData" />
         <activity android:name=".Splash" />
-        <activity android:name=".Login"></activity>
+        <activity android:name=".ObjectRecognition"></activity>
     </application>
 
 </manifest>
