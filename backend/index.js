@@ -21,11 +21,16 @@ app.use(logger("dev"));
 app.use(compression());
 app.use(helmet());
 
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cors());
 
 app.use("/recs", recs);
 app.use("/traits", traits);
+
+app.get("/", (req, res) => {
+  res.json({ text: "Dummy End Point" });
+});
 
 connectMongo();
 

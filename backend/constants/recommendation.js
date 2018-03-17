@@ -121,29 +121,29 @@ const recommendations = {
     0: {
       text: "Have more food items like Legumes, Lentils, Nuts and Seeds",
       status: true,
-      food: ["Legumes", "Lentils", "Nuts and Seeds"]
+      food: ["Legumes", "Lentils", "Nuts and Seeds", "Potato"]
     },
     1: {
       text: "Have more food items like Legumes, Lentils, Nuts and Seeds",
       status: true,
-      food: ["Legumes", "Lentils", "Nuts and Seeds"]
+      food: ["Legumes", "Lentils", "Nuts and Seeds", "Potato"]
     },
     2: {
       text: "",
       status: true,
-      food: ["Legumes", "Lentils", "Nuts and Seeds"]
+      food: ["Legumes", "Lentils", "Nuts and Seeds", "Potato"]
     },
     3: {
       text:
         "Have less food items with high Iron content like Legumes, Lentils, Nuts and Seeds",
       status: false,
-      food: ["Legumes", "Lentiles", "Nuts and Seeds"]
+      food: ["Legumes", "Lentiles", "Nuts and Seeds", "Potato"]
     },
     4: {
       status: false,
       text:
         "Have less food items with high Iron content like Legumes, Lentils, Nuts and Seeds",
-      food: ["Legumes", "Lentiles", "Nuts and Seeds"]
+      food: ["Legumes", "Lentiles", "Nuts and Seeds", "Potato"]
     }
   }
 };
