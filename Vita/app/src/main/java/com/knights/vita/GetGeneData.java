@@ -76,16 +76,19 @@ public class GetGeneData extends AppCompatActivity {
                             Log.d("main",mainList.get(0).toString());
 
                             for(int i =0; i<mainList.size();i++){
+                                Log.d("here","....");
                                 String dummy1 = mainList.get(i).toString();
                                 Log.d("dummy",dummy1);
                                 try {
-                                    JSONArray jsonArray1 = new JSONArray(dummy1);
+                                    JSONObject jsonArray1 = new JSONObject(dummy1);
+                                    Log.d("1 length",Integer.toString(jsonArray1.length()));
                                     for (int j = 0; j < jsonArray1.length(); j++) {
-                                        responseList.add(jsonArray1.get(2).toString());
-                                        Log.d("logs", jsonArray1.get(2).toString());
+                                        responseList.add(jsonArray1.get("rec").toString());
+                                        Log.d("logs", jsonArray1.get("rec").toString());
                                     }
                                 }catch (Exception e){
 
+                                    Log.d("exception",e.toString());
                                 }
                             }
 
