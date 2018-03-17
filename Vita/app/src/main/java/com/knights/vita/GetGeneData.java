@@ -88,11 +88,11 @@ public class GetGeneData extends AppCompatActivity {
                                 try {
                                     JSONObject jsonArray1 = new JSONObject(dummy1);
                                     Log.d("1 length",Integer.toString(jsonArray1.length()));
-                                    for (int j = 0; j < jsonArray1.length(); j++) {
+
                                         trait.add(jsonArray1.get("trait").toString());
                                         responseList.add(jsonArray1.get("rec").toString());
                                         Log.d("logs",jsonArray1.get("trait").toString() + "///" + jsonArray1.get("rec").toString());
-                                    }
+
                                 }catch (Exception e){
 
                                     Log.d("exception",e.toString());
@@ -106,10 +106,10 @@ public class GetGeneData extends AppCompatActivity {
                             for (int i = 0;i<responseList.size();i++){
                                 try{
                                     JSONObject jsonArray2 = new JSONObject(responseList.get(i));
-                                    for(int k=0;k<jsonArray2.length();k++){
+//                                    for(int k=0;k<jsonArray2.length();k++){
                                         recommendations.add(jsonArray2.get("text").toString());
                                         foodItems.add(jsonArray2.get("food").toString());
-                                    }
+//                                    }
                                 }catch (Exception e){
 
                                 }
