@@ -25,10 +25,12 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.koushikdutta.async.future.FutureCallback;
 import com.koushikdutta.ion.Ion;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 
 
@@ -271,6 +273,16 @@ public class ObjectRecognition extends AppCompatActivity {
         JsonObject forFeatures = new JsonObject();
 
         JsonObject finalObject = new JsonObject();
+
+
+        JsonObject imageRoot = new JsonObject();
+        JsonObject featuresRoot = new JsonObject();
+
+
+        JsonObject finalOutput = new JsonObject();
+
+
+        final JsonObject response = new JsonObject();
         
 
 
@@ -285,10 +297,21 @@ public class ObjectRecognition extends AppCompatActivity {
             features.add(forFeatures);
 //            requests.put(0,image);
 //            requests.put(1,features);
-            requests.add(image);
-            requests.add(features);
 
-            finalObject = requests.getAsJsonObject();
+
+            Map<String,JsonObject> mapPass = new HashMap<>();
+
+
+            imageRoot.add("image", image);
+            imageRoot.add("features",features);
+
+
+            requests.add(imageRoot);
+//            requests.add(featuresRoot);
+
+            finalOutput.add("requests",requests);
+
+            finalObject = finalOutput.getAsJsonObject();
 
 
 
@@ -306,41 +329,19 @@ public class ObjectRecognition extends AppCompatActivity {
                 .setCallback(new FutureCallback<JsonObject>() {
                     @Override
                     public void onCompleted(Exception e, JsonObject result) {
-//                        Log.d("objectdetectionresult",result.toString());
+
+
+                        JsonObject response = new JsonObject();
+                        JsonArray responseArray = new JsonArray();
+                        responseArray = response.getAsJsonArray();
+                        Log.d("size",Integer.toString(responseArray.size()));
+
+
                     }
                 });
 
 
-//        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
-//                new Response.Listener<String>()
-//                {
-//                    @Override
-//                    public void onResponse(String response) {
-//                        // response
-//                        Log.d("Response", response);
-//                    }
-//                },
-//                new Response.ErrorListener()
-//                {
-//                    @Override
-//                    public void onErrorResponse(VolleyError error) {
-//                        // error
-//                        Log.d("Error.Response", response);
-//                    }
-//                }
-//        ) {
-//            @Override
-//            protected Map<String, String> getParams()
-//            {
-//                Map<String, String>  params = new HashMap<String, String>();
-//                params.put("name", "Alif");
-//                params.put("domain", "http://itsalif.info");
-//
-//                return params;
-//            }
-//        };
-//        queue.add(postRequest);
-//
+
 
 
     }
