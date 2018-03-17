@@ -6,27 +6,36 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
 <script type="text/javascript" src="jquery.min.js"></script>
 <script type="text/javascript" src="qrcode.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" >
 </head>
 <body>
-<input id="text" type="text" value="Roundmelon" style="width:80%" /><br />
-<div id="qrcode" style="width:250px; height:250px; margin-top:15px;"></div>
 
+<center><div class="card w-75">
+    <div class="card-body">
+      <h5 class="card-title">Scan the QR Code!</h5>
+      <!-- <input id="text" type="text" value="Roundmelon" style="width:80%" /><br /> -->
+      <div id="qrcode" style="width:250px; height:250px; margin-top:15px;"></div><br>
+      <a href="#" class="btn btn-primary">Button</a>
+    </div>
+  </div>
+</center>
 <script type="text/javascript">
 var qrcode = new QRCode(document.getElementById("qrcode"), {
 	width : 250,
 	height : 250
 });
 
-function makeCode () {		
-	var elText = document.getElementById("text");//INPUT STRING ID
+function makeCode () {	
+    var elText="FRANKLIN";	//TEXT or
+	// var elText = document.getElementById("text");//INPUT STRING ID
 	
-	if (!elText.value) {
+	if (!elText) {
 		alert("Wrong ID!!");
 		elText.focus();
 		return;
 	}
-	
-	qrcode.makeCode(elText.value);
+	qrcode.makeCode(elText);
+	// qrcode.makeCode(elText.value);
 }
 
 makeCode();
