@@ -19,16 +19,27 @@ import com.google.android.gms.fitness.FitnessOptions;
 import com.google.android.gms.fitness.data.DataSet;
 import com.google.android.gms.fitness.data.DataType;
 import com.google.android.gms.fitness.data.Field;
+import com.google.android.gms.fitness.data.Subscription;
+import com.google.android.gms.fitness.request.DataReadRequest;
+import com.google.android.gms.fitness.result.DataReadResponse;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import logger.LogView;
 import logger.LogWrapper;
 import logger.MessageOnlyLogFilter;
 
 public class Fit extends AppCompatActivity {
+
+
+//    api key AIzaSyCtFDOWbGdYmjJrdKs4oUlwhoNR5w79Kew
 
     public static final String TAG = "StepCounter";
     private static final int REQUEST_OAUTH_REQUEST_CODE = 0x1001;
@@ -44,10 +55,49 @@ public class Fit extends AppCompatActivity {
         initializeLogging();
 
         button = findViewById(R.id.button);
+
+
+        Fitness.getRecordingClient(this, GoogleSignIn.getLastSignedInAccount(this))
+                .subscribe(DataType.TYPE_ACTIVITY_SAMPLES)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.i(TAG, "Successfully subscribed!");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.i(TAG, "There was a problem subscribing.");
+                    }
+                });
+
+
+
+        Fitness.getRecordingClient(this, GoogleSignIn.getLastSignedInAccount(this))
+                .listSubscriptions(DataType.TYPE_ACTIVITY_SAMPLES)
+                .addOnSuccessListener(new OnSuccessListener<List<Subscription>>() {
+                    @Override
+                    public void onSuccess(List<Subscription> subscriptions) {
+                        for (Subscription sc : subscriptions) {
+                            DataType dt = sc.getDataType();
+                            Log.i(TAG, "Active subscription for data type: " + dt.getName());
+                        }
+                    }
+                });
+
+
+
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                readData();
+//                readData();
+//                accessGoogleFit();
+
+
+
+
+
             }
         });
 
@@ -158,5 +208,56 @@ public class Fit extends AppCompatActivity {
         logView.setBackgroundColor(Color.WHITE);
         msgFilter.setNext(logView);
         Log.i(TAG, "Ready");
+    }
+
+    private void accessGoogleFit() {
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(new Date());
+        long endTime = cal.getTimeInMillis();
+        cal.add(Calendar.YEAR, -1);
+        long startTime = cal.getTimeInMillis();
+
+        DataReadRequest readRequest = new DataReadRequest.Builder()
+                .aggregate(DataType.TYPE_STEP_COUNT_DELTA, DataType.AGGREGATE_STEP_COUNT_DELTA)
+                .setTimeRange(startTime, endTime, TimeUnit.MILLISECONDS)
+                .bucketByTime(1, TimeUnit.DAYS)
+                .build();
+
+
+//        Fitness.getHistoryClient(this, GoogleSignIn.getLastSignedInAccount(this))
+//                .readData(readRequest)
+//                .addOnSuccessListener(new OnSuccessListener() {
+//                    @Override
+//                    public void onSuccess(DataReadResponse dataReadResponse) {
+//                        Log.d(LOG_TAG, "onSuccess()");
+//                    }
+//                })
+//                .addOnFailureListener(new OnFailureListener() {
+//                    @Override
+//                    public void onFailure(@NonNull Exception e) {
+//                        Log.e(LOG_TAG, "onFailure()", e);
+//                    }
+//                })
+//                .addOnCompleteListener(new OnCompleteListener() {
+//                    @Override
+//                    public void onComplete(@NonNull Task task) {
+//                        Log.d(LOG_TAG, "onComplete()");
+//                    }
+//                });
+
+
+        Fitness.getHistoryClient(getApplicationContext(),GoogleSignIn.getLastSignedInAccount(this))
+                .readData(readRequest)
+                .addOnSuccessListener(new OnSuccessListener<DataReadResponse>() {
+                    @Override
+                    public void onSuccess(DataReadResponse dataReadResponse) {
+                        Log.d("data",dataReadResponse.getDataSets().toString());
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+
+            }
+        });
     }
 }
