@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "1025132545488",
+    "firebase_url": "https://vita-f616d.firebaseio.com",
+    "project_id": "vita-f616d",
+    "storage_bucket": "vita-f616d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1025132545488:android:3e555f37dbcc85dc",
+        "android_client_info": {
+          "package_name": "com.knights.vita"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1025132545488-ug7pfvq90ms24cop8707vju5u2g2h77e.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.knights.vita",
+            "certificate_hash": "c5a69f157519d4d96b1d8e35a1dc7423d69f8659"
+          }
+        },
+        {
+          "client_id": "1025132545488-b62elp64dq422n9kjr451t8klno8ltvb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD4IzEGgY1cQfdvRugfqz5EcffNO_K16jA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1025132545488-b62elp64dq422n9kjr451t8klno8ltvb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
