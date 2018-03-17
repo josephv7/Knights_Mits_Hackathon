@@ -25,7 +25,8 @@
         <activity android:name=".Home" />
         <activity android:name=".GetGeneData" />
         <activity android:name=".Splash" />
-        <activity android:name=".ObjectRecognition"></activity>
+        <activity android:name=".ObjectRecognition" />
+        <activity android:name=".ListActivity"></activity>
     </application>
 
 </manifest>
