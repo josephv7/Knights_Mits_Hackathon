@@ -35,18 +35,17 @@
         // console.log(traitText[key].phenotype.url_name)
         // console.log(traitText[key].summary.score);
         // console.log(traitText[key].summary.text);
-    
      
   
     if (traitText[key].summary.score<=3) {
-     $("#name").append(redwrap  + cardtitle + traitText[key].phenotype.url_name + cardtext + traitText[key].summary.text + cardend);
+     $("#name").append(redwrap  + cardtitle + traitText[key].phenotype.url_name.toUpperCase() + cardtext + traitText[key].summary.text + cardend);
          
     } 
     else if(traitText[key].summary.score>=3) {
-        $("#name").append(greenwrap  + cardtitle + traitText[key].phenotype.url_name + cardtext + traitText[key].summary.text + cardend);
+        $("#name").append(greenwrap  + cardtitle + traitText[key].phenotype.url_name.toUpperCase() + cardtext + traitText[key].summary.text + cardend);
       
     }else {
-        $("#name").append(yellowwrap  + cardtitle + traitText[key].phenotype.url_name + cardtext + traitText[key].summary.text + cardend);
+        $("#name").append(yellowwrap  + cardtitle + traitText[key].phenotype.url_name.toUpperCase() + cardtext + traitText[key].summary.text + cardend);
       
     }
   
