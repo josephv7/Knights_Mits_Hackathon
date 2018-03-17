@@ -1,8 +1,13 @@
 package com.knights.vita;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -12,6 +17,10 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.JsonArray;
+
+import net.idik.lib.slimadapter.SlimAdapter;
+import net.idik.lib.slimadapter.SlimInjector;
+import net.idik.lib.slimadapter.viewinjector.IViewInjector;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -36,6 +45,12 @@ public class GetGeneData extends AppCompatActivity {
     ArrayList<String> recommendations;
     ArrayList<String> foodItems;
 
+    ArrayList<TraitsClass> traitObjects;
+
+    private RecyclerView recyclerView;
+    private RecyclerView.Adapter mAdapter;
+    private RecyclerView.LayoutManager mLayoutManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +63,14 @@ public class GetGeneData extends AppCompatActivity {
         responseList = new ArrayList<String>();
         recommendations = new ArrayList<String>();
         foodItems = new ArrayList<String>();
+
+
+
+        recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+        recyclerView.setHasFixedSize(true);
+
+        mLayoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(mLayoutManager);
 
 
 
@@ -124,6 +147,15 @@ public class GetGeneData extends AppCompatActivity {
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
+
+
+
+                        for (int i=0;i<trait.size();i++){
+                            TraitsClass traitsClass = new TraitsClass(recommendations.get(i),foodItems.get(i),trait.get(i));
+                        }
+
+
+                        trigger();
                     }
                 },
                 new Response.ErrorListener() {
@@ -142,5 +174,34 @@ public class GetGeneData extends AppCompatActivity {
 
 
 
+    }
+
+
+    public void trigger(){
+
+        Log.d("inide trigger",".....");
+        SlimAdapter.create().register(R.layout.row_layout, new SlimInjector<MiddleClass>() {
+            @Override
+            public void onInject(MiddleClass data, IViewInjector injector) {
+
+                Log.d("inside inject","...");
+                injector.text(R.id.event_name,data.getUid().toUpperCase())
+                        .text(R.id.p1,data.getRating().toString());
+                LinearLayout ll = (LinearLayout) injector.findViewById(R.id.ll);
+
+                final String middleId = data.getUid();
+                ll.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                        Intent middleMenIntent = new Intent(MiddleList.this,MiddleDetailed.class);
+                        middleMenIntent.putExtra("middleId",middleId);
+                        startActivity(middleMenIntent);
+                    }
+                });
+
+            }
+        }).attachTo(recyclerView)
+                .updateData(fetchedMiddle);
     }
 }
