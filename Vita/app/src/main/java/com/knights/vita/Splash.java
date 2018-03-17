@@ -26,7 +26,7 @@ public class Splash extends AppCompatActivity {
         setContentView(R.layout.activity_splash);
 
 
-        String JSON_URL = "http://10.90.101.143:3000";
+        String JSON_URL = "http://10.90.101.143:3000/";
 
 
 

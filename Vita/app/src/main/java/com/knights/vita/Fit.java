@@ -241,8 +241,6 @@ public class Fit extends AppCompatActivity {
 
     }
 
-
-
     private static void dumpDataSet(DataSet dataSet) {
         Log.i(TAG, "Data returned for Data type: " + dataSet.getDataType().getName());
         DateFormat dateFormat = getTimeInstance();
@@ -285,8 +283,6 @@ public class Fit extends AppCompatActivity {
         // Create a data set
         int stepCountDelta = 950;
         DataSet dataSet = DataSet.create(dataSource);
-        // For each data point, specify a start time, end time, and the data value -- in this case,
-        // the number of new steps.
         DataPoint dataPoint =
                 dataSet.createDataPoint().setTimeInterval(startTime, endTime, TimeUnit.MILLISECONDS);
         dataPoint.getValue(Field.FIELD_STEPS).setInt(stepCountDelta);
@@ -322,8 +318,6 @@ public class Fit extends AppCompatActivity {
                         });
     }
 
-
-
     private Task<DataReadResponse> readHistoryData() {
         // Begin by creating the query.
         DataReadRequest readRequest = queryFitnessData();
@@ -335,9 +329,7 @@ public class Fit extends AppCompatActivity {
                         new OnSuccessListener<DataReadResponse>() {
                             @Override
                             public void onSuccess(DataReadResponse dataReadResponse) {
-                                // For the sake of the sample, we'll print the data so we can see what we just
-                                // added. In general, logging fitness information should be avoided for privacy
-                                // reasons.
+
                                 printData(dataReadResponse);
                             }
                         })
@@ -352,9 +344,7 @@ public class Fit extends AppCompatActivity {
 
 
     public static void printData(DataReadResponse dataReadResult) {
-        // [START parse_read_data_result]
-        // If the DataReadRequest object specified aggregated data, dataReadResult will be returned
-        // as buckets containing DataSets, instead of just DataSets.
+
         if (dataReadResult.getBuckets().size() > 0) {
             Log.i(
                     TAG, "Number of returned buckets of DataSets is: " + dataReadResult.getBuckets().size());
@@ -370,13 +360,10 @@ public class Fit extends AppCompatActivity {
                 dumpDataSet(dataSet);
             }
         }
-        // [END parse_read_data_result]
     }
 
 
     public static DataReadRequest queryFitnessData() {
-        // [START build_read_data_request]
-        // Setting a start and end date using a range of 1 week before this moment.
         Calendar cal = Calendar.getInstance();
         Date now = new Date();
         cal.setTime(now);
@@ -390,19 +377,11 @@ public class Fit extends AppCompatActivity {
 
         DataReadRequest readRequest =
                 new DataReadRequest.Builder()
-                        // The data request can specify multiple data types to return, effectively
-                        // combining multiple data queries into one call.
-                        // In this example, it's very unlikely that the request is for several hundred
-                        // datapoints each consisting of a few steps and a timestamp.  The more likely
-                        // scenario is wanting to see how many steps were walked per day, for 7 days.
                         .aggregate(DataType.TYPE_STEP_COUNT_DELTA, DataType.AGGREGATE_STEP_COUNT_DELTA)
-                        // Analogous to a "Group By" in SQL, defines how data should be aggregated.
-                        // bucketByTime allows for a time span, whereas bucketBySession would allow
-                        // bucketing by "sessions", which would need to be defined in code.
+
                         .bucketByTime(1, TimeUnit.DAYS)
                         .setTimeRange(startTime, endTime, TimeUnit.MILLISECONDS)
                         .build();
-        // [END build_read_data_request]
 
         return readRequest;
     }
