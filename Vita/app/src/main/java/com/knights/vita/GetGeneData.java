@@ -11,24 +11,39 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.gson.JsonArray;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class GetGeneData extends AppCompatActivity {
 
 
-    Integer userId;
+    Integer userId = 1;
 
     UrlClass urlClass = new UrlClass();
     String JSON_URL = urlClass.getUrl();
+    String dummyUrl = "http://10.90.90.19:3000/recs/1";
+
+
+    ArrayList<String> mainList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_get_gene_data);
         setContentView(R.layout.activity_home);
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, JSON_URL + "/recs/" + Integer.toString(userId),
+
+
+        mainList = new ArrayList<String>();
+
+
+//        StringRequest stringRequest = new StringRequest(Request.Method.GET, JSON_URL + "/recs/" + Integer.toString(userId),
+        StringRequest stringRequest = new StringRequest(Request.Method.GET,dummyUrl,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -36,11 +51,24 @@ public class GetGeneData extends AppCompatActivity {
 
                         try {
 
-                            JSONObject obj = new JSONObject(response);
+                            JSONArray jsonArray = new JSONArray(response);
+                            Log.d("size",Integer.toString(jsonArray.length()));
+                            Log.d("response",response);
+
 
 
                             Log.d("test","success");
-                            Log.d("sample",obj.toString());
+                            Log.d("sample",jsonArray.toString());
+
+
+
+                            for(int i =0; i < jsonArray.length();i++){
+
+                                mainList.add(jsonArray.get(i).toString());
+
+                            }
+
+
 
                         } catch (JSONException e) {
                             e.printStackTrace();
