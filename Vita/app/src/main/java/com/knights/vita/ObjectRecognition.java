@@ -260,7 +260,7 @@ public class ObjectRecognition extends AppCompatActivity {
 //                "}"
 //
 
-        JsonArray requests = new JsonArray();
+        final JsonArray requests = new JsonArray();
         JsonArray features = new JsonArray();
         JsonObject image = new JsonObject();
 //        JsonObject source = new JsonObject();
@@ -326,10 +326,9 @@ public class ObjectRecognition extends AppCompatActivity {
                     public void onCompleted(Exception e, JsonObject result) {
 
 
-                        JsonObject response = new JsonObject();
-                        JsonArray responseArray = new JsonArray();
-                        responseArray = response.getAsJsonArray();
-                        Log.d("size",Integer.toString(responseArray.size()));
+                        String str = result.toString();
+                        Log.d("resp",str);
+
 
 
                     }
