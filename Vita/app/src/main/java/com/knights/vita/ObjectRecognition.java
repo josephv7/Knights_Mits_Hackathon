@@ -216,11 +216,6 @@ public class ObjectRecognition extends AppCompatActivity {
 
 
 
-    //////////
-
-
-
-
     private boolean isCameraAllowed() {
         int result = ContextCompat.checkSelfPermission(this, android.Manifest.permission.CAMERA);
 
