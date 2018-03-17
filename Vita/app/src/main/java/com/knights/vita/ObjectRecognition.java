@@ -20,9 +20,23 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+import com.koushikdutta.async.future.FutureCallback;
+import com.koushikdutta.ion.Ion;
+
+import org.json.JSONException;
+
+
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ObjectRecognition extends AppCompatActivity {
 
@@ -226,6 +240,104 @@ public class ObjectRecognition extends AppCompatActivity {
     public void uploadImage(String encodedImage){
 
 
+        String url = "https://vision.googleapis.com/v1/images:annotate?key=AIzaSyCtFDOWbGdYmjJrdKs4oUlwhoNR5w79Kew";
+
+
+//        String request = "{" +
+//                "  \"requests\":[" +
+//                "    {" +
+//                "      \"image\":{" +
+//                "        \"content\":\"/9j/7QBEUGhvdG9zaG9...image contents...fXNWzvDEeYxxxzj/Coa6Bax//Z\"" +
+//                "      },\n" +
+//                "      \"features\":[\n" +
+//                "        {" +
+//                "          \"type\":\"FACE_DETECTION\"," +
+//                "          \"maxResults\":10\n" +
+//                "        }\n" +
+//                "      ]\n" +
+//                "    }\n" +
+//                "  ]\n" +
+//                "}"
+//
+
+        JsonArray requests = new JsonArray();
+        JsonArray features = new JsonArray();
+        JsonObject image = new JsonObject();
+//        JsonObject source = new JsonObject();
+        JsonObject list = new JsonObject();
+        JsonObject forFeatures = new JsonObject();
+
+        JsonObject finalObject = new JsonObject();
+        
+
+
+        try{
+//            image.put("content",encodedImage);
+            image.addProperty("content",encodedImage);
+//            forFeatures.put("type","LABEL_DETECTION");
+            forFeatures.addProperty("type","LABEL_DETECTION");
+//            forFeatures.put("maxResults",1);
+            forFeatures.addProperty("maxResults",1);
+//            features.put(0,forFeatures);
+            features.add(forFeatures);
+//            requests.put(0,image);
+//            requests.put(1,features);
+            requests.add(image);
+            requests.add(features);
+
+            finalObject = requests.getAsJsonObject();
+
+
+
+        }catch (Exception e){
+
+        }
+
+
+
+
+        Ion.with(getApplicationContext())
+                .load("http://example.com/post")
+                .setJsonObjectBody(finalObject)
+                .asJsonObject()
+                .setCallback(new FutureCallback<JsonObject>() {
+                    @Override
+                    public void onCompleted(Exception e, JsonObject result) {
+                        // do stuff with the result or error
+                    }
+                });
+
+
+//        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+//                new Response.Listener<String>()
+//                {
+//                    @Override
+//                    public void onResponse(String response) {
+//                        // response
+//                        Log.d("Response", response);
+//                    }
+//                },
+//                new Response.ErrorListener()
+//                {
+//                    @Override
+//                    public void onErrorResponse(VolleyError error) {
+//                        // error
+//                        Log.d("Error.Response", response);
+//                    }
+//                }
+//        ) {
+//            @Override
+//            protected Map<String, String> getParams()
+//            {
+//                Map<String, String>  params = new HashMap<String, String>();
+//                params.put("name", "Alif");
+//                params.put("domain", "http://itsalif.info");
+//
+//                return params;
+//            }
+//        };
+//        queue.add(postRequest);
+//
 
 
     }
