@@ -31,6 +31,7 @@ public class GetGeneData extends AppCompatActivity {
 
 
     ArrayList<String> mainList;
+    ArrayList<String> responseList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +41,8 @@ public class GetGeneData extends AppCompatActivity {
 
 
         mainList = new ArrayList<String>();
+        responseList = new ArrayList<String>();
+
 
 
 //        StringRequest stringRequest = new StringRequest(Request.Method.GET, JSON_URL + "/recs/" + Integer.toString(userId),
@@ -63,11 +66,30 @@ public class GetGeneData extends AppCompatActivity {
 
 
                             for(int i =0; i < jsonArray.length();i++){
-
                                 mainList.add(jsonArray.get(i).toString());
-
                             }
 
+
+                            Log.d("main size",Integer.toString(mainList.size()));
+                            ///////////////////////////
+
+                            Log.d("main",mainList.get(0).toString());
+
+                            for(int i =0; i<mainList.size();i++){
+                                String dummy1 = mainList.get(i).toString();
+                                Log.d("dummy",dummy1);
+                                try {
+                                    JSONArray jsonArray1 = new JSONArray(dummy1);
+                                    for (int j = 0; j < jsonArray1.length(); j++) {
+                                        responseList.add(jsonArray1.get(2).toString());
+                                        Log.d("logs", jsonArray1.get(2).toString());
+                                    }
+                                }catch (Exception e){
+
+                                }
+                            }
+
+                            //////////////////////////////
 
 
                         } catch (JSONException e) {
