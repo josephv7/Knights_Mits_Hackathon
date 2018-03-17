@@ -287,7 +287,7 @@ public class ObjectRecognition extends AppCompatActivity {
 //            forFeatures.put("type","LABEL_DETECTION");
             forFeatures.addProperty("type","LABEL_DETECTION");
 //            forFeatures.put("maxResults",1);
-            forFeatures.addProperty("maxResults",1);
+            forFeatures.addProperty("maxResults",3);
 //            features.put(0,forFeatures);
             features.add(forFeatures);
 //            requests.put(0,image);
