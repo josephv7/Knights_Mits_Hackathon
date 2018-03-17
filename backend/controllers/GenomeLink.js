@@ -2,10 +2,12 @@ const constant = require("../constants/constant");
 const fetch = require("node-fetch");
 
 const Traits = require("../models/Traits");
+const RecController = require("./RecController");
 
 class GenomeLink {
   static get(req, res) {
     Traits.get().then(response => {
+      // RecController.generate(response);
       res.json(response);
     });
   }

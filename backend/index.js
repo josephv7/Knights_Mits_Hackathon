@@ -10,6 +10,7 @@ const cors = require("cors");
 
 const connectMongo = require("./config/MongoConnect");
 const traits = require("./routes/traits");
+const recs = require("./routes/recs");
 
 dotenv.load({ path: ".env" });
 
@@ -28,6 +29,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/traits", traits);
+app.use("/recs", recs);
 
 connectMongo();
 
