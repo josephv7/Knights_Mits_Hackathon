@@ -17,6 +17,9 @@ import org.json.JSONObject;
 
 public class GetGeneData extends AppCompatActivity {
 
+
+    Integer userId;
+
     UrlClass urlClass = new UrlClass();
     String JSON_URL = urlClass.getUrl();
 
@@ -25,7 +28,7 @@ public class GetGeneData extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_get_gene_data);
         setContentView(R.layout.activity_home);
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, JSON_URL,
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, JSON_URL + "/recs/" + Integer.toString(userId),
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {

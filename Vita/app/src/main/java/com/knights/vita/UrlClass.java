@@ -6,7 +6,7 @@ package com.knights.vita;
 
 public class UrlClass {
 
-    String url = "http://10.90.90.19:3000";
+    String url = "http://10.90.101.150:3000";
 
     public UrlClass(String url) {
         this.url = url;
