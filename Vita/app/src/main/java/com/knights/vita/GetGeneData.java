@@ -31,7 +31,10 @@ public class GetGeneData extends AppCompatActivity {
 
 
     ArrayList<String> mainList;
+    ArrayList<String> trait;
     ArrayList<String> responseList;
+    ArrayList<String> recommendations;
+    ArrayList<String> foodItems;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +44,10 @@ public class GetGeneData extends AppCompatActivity {
 
 
         mainList = new ArrayList<String>();
+        trait = new ArrayList<String>();
         responseList = new ArrayList<String>();
+        recommendations = new ArrayList<String>();
+        foodItems = new ArrayList<String>();
 
 
 
@@ -83,8 +89,9 @@ public class GetGeneData extends AppCompatActivity {
                                     JSONObject jsonArray1 = new JSONObject(dummy1);
                                     Log.d("1 length",Integer.toString(jsonArray1.length()));
                                     for (int j = 0; j < jsonArray1.length(); j++) {
+                                        trait.add(jsonArray1.get("trait").toString());
                                         responseList.add(jsonArray1.get("rec").toString());
-                                        Log.d("logs", jsonArray1.get("rec").toString());
+                                        Log.d("logs",jsonArray1.get("trait").toString() + "///" + jsonArray1.get("rec").toString());
                                     }
                                 }catch (Exception e){
 
@@ -92,7 +99,26 @@ public class GetGeneData extends AppCompatActivity {
                                 }
                             }
 
+
                             //////////////////////////////
+
+
+                            for (int i = 0;i<responseList.size();i++){
+                                try{
+                                    JSONObject jsonArray2 = new JSONObject(responseList.get(i));
+                                    for(int k=0;k<jsonArray2.length();k++){
+                                        recommendations.add(jsonArray2.get("text").toString());
+                                        foodItems.add(jsonArray2.get("food").toString());
+                                    }
+                                }catch (Exception e){
+
+                                }
+
+                            }
+
+                            Log.d("traitSize",Integer.toString(recommendations.size()));
+
+
 
 
                         } catch (JSONException e) {
@@ -112,6 +138,7 @@ public class GetGeneData extends AppCompatActivity {
 
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
+
 
 
 
