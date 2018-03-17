@@ -1,5 +1,6 @@
 package com.knights.vita;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -43,7 +44,8 @@ public class Login extends AppCompatActivity {
                         if(u.equals(user[i])){
                             flag = 1;
                             if(p.equals(pass[i])){
-                                Toast.makeText(Login.this, "Success", Toast.LENGTH_SHORT).show();
+                                Intent homeIntent = new Intent(Login.this,Home.class);
+                                startActivity(homeIntent);
                                 break;
                             }else{
                                 Toast.makeText(Login.this, "Wrong password", Toast.LENGTH_SHORT).show();
