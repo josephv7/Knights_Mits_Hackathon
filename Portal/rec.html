@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+<script>
+    var traitText = [{"_id":"5aaca2778eba35858f2e447a","phenotype":{"url_name":"vitamin-a","display_name":"Vitamin A","category":"food_and_nutrition"},"population":"european","scores":[{"score":0,"text":"Lower serum level"},{"score":1,"text":"Slightly lower serum level"},{"score":2,"text":"Intermediate"},{"score":3,"text":"Slightly higher serum level"},{"score":4,"text":"Higher serum level"}],"summary":{"score":0,"text":"Lower serum level","warnings":[]}},{"_id":"5aaca2778eba35858f2e447b","phenotype":{"url_name":"vitamin-b12","display_name":"Vitamin B12","category":"food_and_nutrition"},"population":"european","scores":[{"score":0,"text":"Lower serum level"},{"score":1,"text":"Slightly lower serum level"},{"score":2,"text":"Intermediate"},{"score":3,"text":"Slightly higher serum level"},{"score":4,"text":"Higher serum level"}],"summary":{"score":1,"text":"Slightly lower serum level","warnings":["reliability is low"]}},{"_id":"5aaca2778eba35858f2e447c","phenotype":{"url_name":"vitamin-d","display_name":"Vitamin D","category":"food_and_nutrition"},"population":"european","scores":[{"score":0,"text":"Lower serum level"},{"score":1,"text":"Slightly lower serum level"},{"score":2,"text":"Intermediate"},{"score":3,"text":"Slightly higher serum level"},{"score":4,"text":"Higher serum level"}],"summary":{"score":2,"text":"Intermediate","warnings":[]}},{"_id":"5aaca2778eba35858f2e447d","phenotype":{"url_name":"vitamin-e","display_name":"Vitamin E","category":"food_and_nutrition"},"population":"european","scores":[{"score":0,"text":"Lower serum level"},{"score":1,"text":"Slightly lower serum level"},{"score":2,"text":"Intermediate"},{"score":3,"text":"Slightly higher serum level"},{"score":4,"text":"Higher serum level"}],"summary":{"score":2,"text":"Intermediate","warnings":[]}},{"_id":"5aaca2778eba35858f2e447e","phenotype":{"url_name":"iron","display_name":"Iron","category":"food_and_nutrition"},"population":"european","scores":[{"score":0,"text":"Lower serum level"},{"score":1,"text":"Slightly lower serum level"},{"score":2,"text":"Intermediate"},{"score":3,"text":"Slightly higher serum level"},{"score":4,"text":"Higher serum level"}],"summary":{"score":2,"text":"Intermediate","warnings":[]}}];
+    // for(var k=0;k<traitText.length;k++)
+    // {
+      
+    //     var objArray=traitText[k].summary[k];
+    //     console.log(objArray);
+    //     for ( var key in objArray) {
+    //         sValue = objArray[key].toString();
+    //         console.log(sValue);
+    //     }
+    // }
+    for (var key in traitText) {
+        console.log(traitText[key].summary);
+        console.log(traitText[key].summary.score);
+    }
+   
+</script>
+
+
+</body>
+</html>
