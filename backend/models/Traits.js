@@ -23,6 +23,7 @@ class Traits {
         .catch(error => reject(error));
     });
   }
+  static generateRecommendations() {}
 }
 
 module.exports = Traits;

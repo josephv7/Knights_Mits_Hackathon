@@ -6,7 +6,6 @@ const Traits = require("../models/Traits");
 class GenomeLink {
   static get(req, res) {
     Traits.get().then(response => {
-      console.log(response);
       res.json(response);
     });
   }
