@@ -7,7 +7,7 @@ const RecController = require("./RecController");
 class GenomeLink {
   static get(req, res) {
     Traits.get().then(response => {
-      // RecController.generate(response);
+      RecController.generate(response);
       res.json(response);
     });
   }
