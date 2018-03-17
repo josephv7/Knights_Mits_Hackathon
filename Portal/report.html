@@ -42,9 +42,9 @@
     var progressbarend="aria-valuenow='0' aria-valuemin='0' aria-valuemax='100'></div></div><br>";
     var progress0="style='width: 0%;background-color:#dc3545;'";
     var progress1="style='width: 25%;background-color:#dc3545;'";
-    var progress2="style='width: 50%;background-color:#6c757d;'";
-    var progress3="style='width: 75%;background-color:#28a745;'";
-    var progress4="style='width: 100%;background-color:#28a745;'";
+    var progress2="style='width: 50%;background-color:#28a745;'";
+    var progress3="style='width: 75%;background-color:#dc3545;'";
+    var progress4="style='width: 100%;background-color:#dc3545;'";
   
     var greenwrap="<div class='card border-success mb-3' style='max-width: 58rem;'><div class='card-body text-success'>";
     var redwrap="<div class='card border-danger mb-3' style='max-width: 58rem;'><div class='card-body text-danger'>";
@@ -71,12 +71,12 @@
     $("#name").append(redwrap  + cardtitle + traitText[key].phenotype.url_name.toUpperCase() + cardtext + traitText[key].summary.text +  progressbarbegin + progress1 + progressbarend+ cardend); 
    } 
    else if (traitText[key].summary.score==2) {
-    $("#name").append(yellowwrap  + cardtitle + traitText[key].phenotype.url_name.toUpperCase() + cardtext + traitText[key].summary.text +  progressbarbegin + progress2 + progressbarend)+ cardend;
+    $("#name").append(greenwrap  + cardtitle + traitText[key].phenotype.url_name.toUpperCase() + cardtext + traitText[key].summary.text +  progressbarbegin + progress2 + progressbarend)+ cardend;
    } 
    else if(traitText[key].summary.score>2) {
-       $("#name").append(greenwrap  + cardtitle + traitText[key].phenotype.url_name.toUpperCase() + cardtext + traitText[key].summary.text +  progressbarbegin + progress3 + progressbarend+ cardend);   
+       $("#name").append(redwrap  + cardtitle + traitText[key].phenotype.url_name.toUpperCase() + cardtext + traitText[key].summary.text +  progressbarbegin + progress3 + progressbarend+ cardend);   
    }else {
-    $("#name").append(greenwrap  + cardtitle + traitText[key].phenotype.url_name.toUpperCase() + cardtext + traitText[key].summary.text + progressbarbegin + progress4 + progressbarend+ cardend); 
+    $("#name").append(redwrap  + cardtitle + traitText[key].phenotype.url_name.toUpperCase() + cardtext + traitText[key].summary.text + progressbarbegin + progress4 + progressbarend+ cardend); 
    }
    }
    }});
