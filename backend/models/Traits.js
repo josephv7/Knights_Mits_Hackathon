@@ -1,5 +1,4 @@
 const connectMongo = require("../config/MongoConnect");
-const MongoClient = require("mongodb").MongoClient;
 
 class Traits {
   static insert(data) {
