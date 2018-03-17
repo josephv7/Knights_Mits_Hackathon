@@ -8,11 +8,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
 import java.util.Scanner;
+
+import logger.Log;
 
 public class Share extends AppCompatActivity {
 
@@ -63,16 +66,13 @@ public class Share extends AppCompatActivity {
                 //Toast.makeText(this, "Cancelled", Toast.LENGTH_LONG).show();
                 Snackbar.make(findViewById(R.id.rootview),"Press Once More To Exit.", Snackbar.LENGTH_SHORT).show();
             } else {
-                //Toast.makeText(this, "Scanned: " + result.getContents(), Toast.LENGTH_LONG).show();
-//                Intent passIntent = new Intent(Share.this,MainActivity.class);
+
 //                TODO call api here
 
+                String doctorId = result.getContents();
+                Toast.makeText(context, doctorId, Toast.LENGTH_SHORT).show();
+                Log.d("docid",doctorId);
 
-                String[] scanParts = result.getContents().split("-");
-                passIntent.putExtra("dealerId",dealerId);
-                passIntent.putExtra("userId",scanParts[0]);
-                passIntent.putExtra("vehicleId",scanParts[1]);
-                startActivity(passIntent);
             }
         } else {
             super.onActivityResult(requestCode, resultCode, data);
