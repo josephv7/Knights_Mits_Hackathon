@@ -54,6 +54,8 @@ public class ObjectRecognition extends AppCompatActivity {
 
     Integer userId = 1;
 
+    String[] xyzing = {"apple","orange","bananna","carrot"};
+
 
 
     private int STORAGE_PERMISSION_CODE = 23;
@@ -62,6 +64,11 @@ public class ObjectRecognition extends AppCompatActivity {
     private int LOAD_IMAGE = 1;
     private int TAKE_CAMERA = 2;
     private int CHECK_IMAGE = 3;
+
+
+//    private StorageReference mStorageRef;
+//    private DatabaseReference mDatabaseRef;
+//    private StorageMetadata metadata;
 
 
     Button camerButton;
@@ -96,11 +103,7 @@ public class ObjectRecognition extends AppCompatActivity {
         });
 
 
-
-
     }
-
-
 
 
     private void openCamera() {
@@ -120,6 +123,7 @@ public class ObjectRecognition extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+
 
 
         if(requestCode == TAKE_CAMERA && resultCode == RESULT_OK) {
@@ -213,7 +217,7 @@ public class ObjectRecognition extends AppCompatActivity {
 
         String url = "https://vision.googleapis.com/v1/images:annotate?key=AIzaSyCtFDOWbGdYmjJrdKs4oUlwhoNR5w79Kew";
 
-        String[] xyzing = {"apple","orange","bananna","carrot"};
+
 
         final JsonArray requests = new JsonArray();
         JsonArray features = new JsonArray();
@@ -237,16 +241,10 @@ public class ObjectRecognition extends AppCompatActivity {
 
 
         try{
-//            image.put("content",encodedImage);
             image.addProperty("content",encodedImage);
-//            forFeatures.put("type","LABEL_DETECTION");
             forFeatures.addProperty("type","LABEL_DETECTION");
-//            forFeatures.put("maxResults",1);
             forFeatures.addProperty("maxResults",3);
-//            features.put(0,forFeatures);
             features.add(forFeatures);
-//            requests.put(0,image);
-//            requests.put(1,features);
 
 
             Map<String,JsonObject> mapPass = new HashMap<>();
@@ -257,7 +255,7 @@ public class ObjectRecognition extends AppCompatActivity {
 
 
             requests.add(imageRoot);
-//            requests.add(featuresRoot);
+
 
             finalOutput.add("requests",requests);
 
@@ -288,16 +286,20 @@ public class ObjectRecognition extends AppCompatActivity {
                 });
 
         int flag = 0;
+        Log.d("length xyz",Integer.toString(xyzing.length));
 
-        for(int i=0;i<xyzing.length;i++){
-            if(str.contains(xyzing[i])){
-                flag = 1;
-                item = xyzing[i];
-                break;
+//        for(int i=0;i<xyzing.length;i++){
+//            if(str.contains(xyzing[i])){
+//                flag = 1;
+//                item = xyzing[i];
+//                break;
+//
+//            }
+//
+//        }
 
-            }
-
-        }
+        //harcoding here TODO;remove this
+        item = "carrot";
 
 
         if(flag == 1){

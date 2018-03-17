@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.knights.vita">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -14,19 +15,23 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".GetGeneData">
+        <activity android:name=".Fit">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Fit" />
-        <activity android:name=".Home" />
+        <activity android:name=".ObjectRecognition" />
+        <activity android:name=".Home" /><activity
+        android:name="com.journeyapps.barcodescanner.CaptureActivity"
+        android:screenOrientation="portrait"
+        tools:replace="screenOrientation" />
         <activity android:name=".Login" />
         <activity android:name=".Splash" />
-        <activity android:name=".ObjectRecognition" />
-        <activity android:name=".ListActivity"></activity>
+        <activity android:name=".GetGeneData" />
+        <activity android:name=".ListActivity" />
+        <activity android:name=".Share"></activity>
     </application>
 
 </manifest>
