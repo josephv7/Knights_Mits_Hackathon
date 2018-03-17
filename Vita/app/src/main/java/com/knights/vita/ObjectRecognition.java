@@ -21,9 +21,11 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.android.volley.Request;
+import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -32,6 +34,7 @@ import com.koushikdutta.ion.Ion;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 
 import java.io.ByteArrayOutputStream;
@@ -46,6 +49,10 @@ public class ObjectRecognition extends AppCompatActivity {
     private Uri uriPhoto;
     Uri uploadUri;
     private Bitmap bitmap;
+
+    String str,item;
+
+    Integer userId = 1;
 
 
 
@@ -242,23 +249,7 @@ public class ObjectRecognition extends AppCompatActivity {
 
         String url = "https://vision.googleapis.com/v1/images:annotate?key=AIzaSyCtFDOWbGdYmjJrdKs4oUlwhoNR5w79Kew";
 
-
-//        String request = "{" +
-//                "  \"requests\":[" +
-//                "    {" +
-//                "      \"image\":{" +
-//                "        \"content\":\"/9j/7QBEUGhvdG9zaG9...image contents...fXNWzvDEeYxxxzj/Coa6Bax//Z\"" +
-//                "      },\n" +
-//                "      \"features\":[\n" +
-//                "        {" +
-//                "          \"type\":\"FACE_DETECTION\"," +
-//                "          \"maxResults\":10\n" +
-//                "        }\n" +
-//                "      ]\n" +
-//                "    }\n" +
-//                "  ]\n" +
-//                "}"
-//
+        String[] xyzing = {"apple","orange","bananna","carrot"};
 
         final JsonArray requests = new JsonArray();
         JsonArray features = new JsonArray();
@@ -326,20 +317,69 @@ public class ObjectRecognition extends AppCompatActivity {
                     public void onCompleted(Exception e, JsonObject result) {
 
 
-                        String str = result.toString();
+                        str = result.toString();
                         Log.d("resp",str);
-
-
 
                     }
                 });
 
+        int flag = 0;
+
+        for(int i=0;i<xyzing.length;i++){
+            if(str.contains(xyzing[i])){
+                flag = 1;
+                item = xyzing[i];
+                break;
+
+            }
+
+        }
 
 
+        if(flag == 1){
 
+
+            Log.d("elementdfound","........");
+
+            UrlClass urlClass = new UrlClass();
+            String rootUrl = urlClass.getUrl();
+            String JSON_URL =rootUrl + "/recs/object/" + item + "?id=" + userId;
+            Log.d("completeUrl",JSON_URL);
+
+
+            StringRequest stringRequest = new StringRequest(Request.Method.GET, JSON_URL,
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+
+                            try {
+
+                                JSONObject obj = new JSONObject(response);
+
+                                Log.d("test","success");
+                                Log.d("sample",obj.toString());
+
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            Log.d("here",".....");
+                            Log.d("here",error.toString());
+                            Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    });
+
+
+            RequestQueue requestQueue = Volley.newRequestQueue(this);
+            requestQueue.add(stringRequest);
+
+
+        }
 
     }
-
-
 
 }

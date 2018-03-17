@@ -17,7 +17,8 @@ import org.json.JSONObject;
 
 public class GetGeneData extends AppCompatActivity {
 
-    String JSON_URL = "http://10.90.101.143:3000/";
+    UrlClass urlClass = new UrlClass();
+    String JSON_URL = urlClass.getUrl();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
