@@ -15,7 +15,7 @@
         android:padding="5dp">
 
         <TextView
-            android:id="@+id/event_name"
+            android:id="@+id/reco"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
@@ -29,7 +29,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/p1"
+            android:id="@+id/trait"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"

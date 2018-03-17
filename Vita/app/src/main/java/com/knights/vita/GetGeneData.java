@@ -55,7 +55,7 @@ public class GetGeneData extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_get_gene_data);
-        setContentView(R.layout.activity_home);
+
 
 
         mainList = new ArrayList<String>();
@@ -63,6 +63,8 @@ public class GetGeneData extends AppCompatActivity {
         responseList = new ArrayList<String>();
         recommendations = new ArrayList<String>();
         foodItems = new ArrayList<String>();
+
+        traitObjects = new ArrayList<TraitsClass>();
 
 
 
@@ -151,7 +153,7 @@ public class GetGeneData extends AppCompatActivity {
 
 
                         for (int i=0;i<trait.size();i++){
-                            TraitsClass traitsClass = new TraitsClass(recommendations.get(i),foodItems.get(i),trait.get(i));
+                            traitObjects.add(new TraitsClass(recommendations.get(i),foodItems.get(i),trait.get(i)));
                         }
 
 
@@ -180,28 +182,28 @@ public class GetGeneData extends AppCompatActivity {
     public void trigger(){
 
         Log.d("inide trigger",".....");
-        SlimAdapter.create().register(R.layout.row_layout, new SlimInjector<MiddleClass>() {
+        SlimAdapter.create().register(R.layout.row_layout, new SlimInjector<TraitsClass>() {
             @Override
-            public void onInject(MiddleClass data, IViewInjector injector) {
+            public void onInject(TraitsClass data, IViewInjector injector) {
 
                 Log.d("inside inject","...");
-                injector.text(R.id.event_name,data.getUid().toUpperCase())
-                        .text(R.id.p1,data.getRating().toString());
+                injector.text(R.id.reco,data.getReccomendation())
+                        .text(R.id.trait,data.getTrait().toString());
                 LinearLayout ll = (LinearLayout) injector.findViewById(R.id.ll);
 
-                final String middleId = data.getUid();
-                ll.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-
-                        Intent middleMenIntent = new Intent(MiddleList.this,MiddleDetailed.class);
-                        middleMenIntent.putExtra("middleId",middleId);
-                        startActivity(middleMenIntent);
-                    }
-                });
+//                final String middleId = data.getUid();
+//                ll.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View view) {
+//
+//                        Intent middleMenIntent = new Intent(MiddleList.this,MiddleDetailed.class);
+//                        middleMenIntent.putExtra("middleId",middleId);
+//                        startActivity(middleMenIntent);
+//                    }
+//                });
 
             }
         }).attachTo(recyclerView)
-                .updateData(fetchedMiddle);
+                .updateData(traitObjects);
     }
 }
