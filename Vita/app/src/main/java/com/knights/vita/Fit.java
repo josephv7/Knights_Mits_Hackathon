@@ -11,6 +11,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -52,6 +53,8 @@ public class Fit extends AppCompatActivity {
     private static final int REQUEST_OAUTH_REQUEST_CODE = 0x1001;
 
     Button button;
+    TextView totalText;
+    static TextView start,to;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +65,10 @@ public class Fit extends AppCompatActivity {
         initializeLogging();
 
         button = (Button) findViewById(R.id.button);
+        totalText = (TextView) findViewById(R.id.totalText);
+        start = (TextView) findViewById(R.id.start);
+        to = (TextView) findViewById(R.id.to);
+
 
 
 
@@ -116,7 +123,7 @@ public class Fit extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                readData();
+                readData();
 //                accessGoogleFit();
                 readHistoryData();
 
@@ -171,6 +178,7 @@ public class Fit extends AppCompatActivity {
                                                 ? 0
                                                 : dataSet.getDataPoints().get(0).getValue(Field.FIELD_STEPS).asInt();
                                 Log.i(TAG, "Total steps: " + total);
+                                totalText.setText(Long.toString(total));
                             }
                         })
                 .addOnFailureListener(
@@ -373,7 +381,9 @@ public class Fit extends AppCompatActivity {
 
         java.text.DateFormat dateFormat = getDateInstance();
         Log.i(TAG, "Range Start: " + dateFormat.format(startTime));
+        start.setText(dateFormat.format(startTime));
         Log.i(TAG, "Range End: " + dateFormat.format(endTime));
+        to.setText(dateFormat.format(endTime));
 
         DataReadRequest readRequest =
                 new DataReadRequest.Builder()
