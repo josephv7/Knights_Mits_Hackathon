@@ -11,6 +11,7 @@ const cors = require("cors");
 const connectMongo = require("./config/MongoConnect");
 const traits = require("./routes/traits");
 const recs = require("./routes/recs");
+const share = require("./routes/share");
 
 dotenv.load({ path: ".env" });
 
@@ -27,6 +28,7 @@ app.use(cors());
 
 app.use("/recs", recs);
 app.use("/traits", traits);
+app.use("/share", share);
 
 app.get("/", (req, res) => {
   res.json({ text: "Dummy End Point" });
