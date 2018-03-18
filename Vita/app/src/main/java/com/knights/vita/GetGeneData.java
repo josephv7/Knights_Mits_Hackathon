@@ -128,8 +128,6 @@ public class GetGeneData extends AppCompatActivity {
                             }
 
 
-                            //////////////////////////////
-
 
                             for (int i = 0;i<responseList.size();i++){
                                 try{

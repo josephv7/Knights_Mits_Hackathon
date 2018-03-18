@@ -16,14 +16,14 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:icon">
-        <activity android:name=".Share">
+        <activity android:name=".ObjectRecognition">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ObjectRecognition" />
+        <activity android:name=".Share" />
         <activity android:name=".Home" /><activity
         android:name="com.journeyapps.barcodescanner.CaptureActivity"
         android:screenOrientation="portrait"
@@ -31,7 +31,6 @@
         <activity android:name=".Login" />
         <activity android:name=".Splash" />
         <activity android:name=".GetGeneData" />
-        <activity android:name=".ListActivity" />
         <activity android:name=".Fit"></activity>
     </application>
 
