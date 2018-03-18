@@ -39,11 +39,12 @@ dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:design:25.4.0'
-    androidTestCompile('com.android.support.test.espresso:espresso-core:3.0.1'){
+    androidTestCompile('com.android.support.test.espresso:espresso-core:3.0.1') {
         exclude group: 'com.google.code.findbugs'
     }
 
 }
+
 
 
 apply plugin: 'com.google.gms.google-services'
