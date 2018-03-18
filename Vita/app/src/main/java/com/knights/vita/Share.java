@@ -71,48 +71,61 @@ public class Share extends AppCompatActivity {
                 Snackbar.make(findViewById(R.id.rootview),"Press Once More To Exit.", Snackbar.LENGTH_SHORT).show();
             } else {
 
+
+                Log.d("val",result.getContents());
+
+
+                Intent passIntent = new Intent(Share.this,ShareDetail.class);
+
+
+                passIntent.putExtra("doctorId",result.getContents());
+                startActivity(passIntent);
+
+
+
+
 //                TODO call api here
 
-                String doctorId = result.getContents();
-                Toast.makeText(context, doctorId, Toast.LENGTH_SHORT).show();
-                Log.d("docid",doctorId);
-
-
-                UrlClass url = new UrlClass();
-                String finalUrl = url.getUrl() + "/share/" + doctorId + "?" + Integer.toString(userId);
-                Log.d("finalUrl",finalUrl);
-
-                StringRequest stringRequest = new StringRequest(Request.Method.GET, finalUrl,
-                        new Response.Listener<String>() {
-                            @Override
-                            public void onResponse(String response) {
-
-                                try {
-
-                                    JSONObject obj = new JSONObject(response);
-                                    Log.d("status",obj.get("text").toString());
-
-                                } catch (JSONException e) {
-                                    e.printStackTrace();
-                                }
-                            }
-                        },
-                        new Response.ErrorListener() {
-                            @Override
-                            public void onErrorResponse(VolleyError error) {
-                                android.util.Log.d("here",".....");
-                                android.util.Log.d("here",error.toString());
-                                Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
-                            }
-                        });
-
-
-                RequestQueue requestQueue = Volley.newRequestQueue(this);
-                requestQueue.add(stringRequest);
-
-
-
-
+//                String doctorId = result.getContents();
+//                Toast.makeText(context, doctorId, Toast.LENGTH_SHORT).show();
+//                Log.d("docid",doctorId);
+//
+//
+//                UrlClass url = new UrlClass();
+//                String finalUrl = url.getUrl() + "/share/" + doctorId + "?" + Integer.toString(userId);
+//                Log.d("finalUrl",finalUrl);
+//
+//                StringRequest stringRequest = new StringRequest(Request.Method.GET, finalUrl,
+//                        new Response.Listener<String>() {
+//                            @Override
+//                            public void onResponse(String response) {
+//
+//                                try {
+//
+//                                    JSONObject obj = new JSONObject(response);
+//                                    Log.d("status",obj.get("text").toString());
+//
+//                                } catch (JSONException e) {
+//                                    e.printStackTrace();
+//                                }
+//                            }
+//                        },
+//                        new Response.ErrorListener() {
+//                            @Override
+//                            public void onErrorResponse(VolleyError error) {
+//                                android.util.Log.d("here",".....");
+//                                android.util.Log.d("here",error.toString());
+//                                Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
+//                            }
+//                        });
+//
+//
+//                RequestQueue requestQueue = Volley.newRequestQueue(this);
+//                requestQueue.add(stringRequest);
+//
+//
+//
+//
 
 
 
