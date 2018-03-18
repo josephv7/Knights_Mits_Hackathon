@@ -1,9 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.knights.vita.Home">
 
-</android.support.constraint.ConstraintLayout>
+
+    <Button
+        android:id="@+id/geneData"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="226dp"
+        android:text="Button"
+        tools:text="GENE DATA" />
+
+    <Button
+        android:id="@+id/share"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/geneData"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="45dp"
+        android:text="Button"
+        tools:text="SHARE" />
+
+    <Button
+        android:id="@+id/object"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/geneData"
+        android:layout_below="@+id/geneData"
+        android:layout_marginTop="69dp"
+        android:text="OBJECT DETECTION" />
+
+    <Button
+        android:id="@+id/fit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/object"
+        android:layout_alignStart="@+id/share"
+        android:layout_marginStart="12dp"
+        android:text="Button"
+        tools:text="FITBIT" />
+</RelativeLayout>
