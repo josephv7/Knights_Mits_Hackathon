@@ -12,6 +12,7 @@
 body {
     background-image: url("bg.jpeg");
     -webkit-filter: grayscale(100%);
+
     }
 .card{
     background-color: #f8f9fa;
@@ -31,7 +32,7 @@ body {
 }
     </style>
 </head>
-<body> <div class="layer">   <h1 class="text-center" style="padding-top:5%;color:white;font-size:90px;">Vita !</h1> <h1 class="text-center" style="color:white;font-size:60px;">Your Personal Health Recommendation Specialist.</h1>
+<body> <div class="layer">   <h1 class="text-center" style="padding-top:5%;color:white;font-size:90px;">Vita ! - Doctors Portal</h1> <h1 class="text-center" style="color:white;font-size:30px;">Your Personal Health Recommendation Specialist.</h1>
 </div>
 <br>
 <br>
@@ -40,7 +41,7 @@ body {
       <h5 class="card-title">Scan the QR Code!</h5>
       <!-- <input id="text" type="text" value="Roundmelon" style="width:80%" /><br /> -->
       <div id="qrcode" style="width:250px; height:250px; margin-top:15px;"></div><br>
-      <a href="#" class="btn btn-primary">Button</a>
+      <a href="#" class="btn btn-primary">Report Issue</a>
     </div>
   </div>
 </center>
@@ -54,7 +55,7 @@ var qrcode = new QRCode(document.getElementById("qrcode"), {
 });
 
 function makeCode () {	
-    var elText="FRANKLIN";	//TEXT or
+    var elText="abcd";	//TEXT or
 	// var elText = document.getElementById("text");//INPUT STRING ID
 	
 	if (!elText) {
@@ -76,7 +77,21 @@ $("#text").
 		if (e.keyCode == 13) {
 			makeCode();
 		}
-	});
+    });
+var checkstatus="http://10.90.101.150:3000/share/check/abcd";
+var interval = setInterval(fCall, 2000);
+function fCall() {
+    $.ajax({
+                url: checkstatus,
+                success: function(resultstatus) {
+                    if (resultstatus.status){
+                    clearInterval(interval);
+                    window.location = "report.html?id=1";
+                    }
+                 }
+            });
+   
+}
 </script>
 
 </body>

@@ -188,9 +188,39 @@ public class GetGeneData extends AppCompatActivity {
             public void onInject(TraitsClass data, IViewInjector injector) {
 
                 Log.d("inside inject","...");
-                injector.text(R.id.reco,data.getReccomendation())
-                        .text(R.id.trait,data.getTrait().toString());
-                LinearLayout ll = (LinearLayout) injector.findViewById(R.id.ll);
+
+                String[] foods = data.food.split(",");
+                Log.d("food",foods[0]);
+                if (foods[0].toLowerCase().contains("tuna")){
+                    injector.text(R.id.reco,data.getReccomendation())
+                            .text(R.id.trait,data.getTrait().toString())
+                            .image(R.id.imageView,R.drawable.tuna);
+                    LinearLayout ll = (LinearLayout) injector.findViewById(R.id.ll);
+                }
+                else if (foods[0].toLowerCase().contains("legumes")){
+                    injector.text(R.id.reco,data.getReccomendation())
+                            .text(R.id.trait,data.getTrait().toString())
+                            .image(R.id.imageView,R.drawable.legumes);
+                    LinearLayout ll = (LinearLayout) injector.findViewById(R.id.ll);
+                }
+                else if (foods[0].toLowerCase().contains("egg")){
+                    injector.text(R.id.reco,data.getReccomendation())
+                            .text(R.id.trait,data.getTrait().toString())
+                            .image(R.id.imageView,R.drawable.egg);
+                    LinearLayout ll = (LinearLayout) injector.findViewById(R.id.ll);
+                }
+                else if (foods[0].toLowerCase().contains("beef liver")){
+                    injector.text(R.id.reco,data.getReccomendation())
+                            .text(R.id.trait,data.getTrait().toString())
+                            .image(R.id.imageView,R.drawable.liver);
+                    LinearLayout ll = (LinearLayout) injector.findViewById(R.id.ll);
+                }
+                else {
+                    injector.text(R.id.reco, data.getReccomendation())
+                            .text(R.id.trait, data.getTrait().toString())
+                            .image(R.id.imageView, R.drawable.strawberries);
+                    LinearLayout ll = (LinearLayout) injector.findViewById(R.id.ll);
+                }
 
 //                final String middleId = data.getUid();
 //                ll.setOnClickListener(new View.OnClickListener() {
