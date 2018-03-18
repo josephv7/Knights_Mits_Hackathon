@@ -13,6 +13,11 @@
         android:id="@+id/button"
         android:text="Read Data"/>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/totalText"/>
+
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -34,13 +39,13 @@
     </LinearLayout>
 
     <ScrollView
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
-    <logger.LogView
-    android:id="@+id/sample_logview"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:scrollbars="vertical" />
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+        <logger.LogView
+            android:id="@+id/sample_logview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scrollbars="vertical" />
     </ScrollView>
 
 
