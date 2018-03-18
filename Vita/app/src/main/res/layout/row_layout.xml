@@ -14,6 +14,12 @@
         android:orientation="vertical"
         android:padding="5dp">
 
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/common_google_signin_btn_icon_dark" />
+
         <TextView
             android:id="@+id/reco"
             android:layout_width="wrap_content"
