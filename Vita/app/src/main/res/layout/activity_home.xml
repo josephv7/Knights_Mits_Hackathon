@@ -3,17 +3,30 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="#e47650"
     android:layout_height="match_parent"
     tools:context="com.knights.vita.Home">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="17dp"
+        android:gravity="center_horizontal"
+        android:text="DASHBOARD"
+        android:textColor="#fff"
+        android:textSize="40dp"
+        android:textStyle="bold" />
 
 
     <Button
         android:id="@+id/geneData"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="226dp"
+        android:layout_above="@+id/fit"
+        android:layout_alignStart="@+id/object"
+        android:layout_marginBottom="41dp"
         android:text="Button"
         tools:text="GENE DATA" />
 
@@ -31,9 +44,10 @@
         android:id="@+id/object"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/geneData"
-        android:layout_below="@+id/geneData"
-        android:layout_marginTop="69dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="49dp"
+        android:layout_marginStart="25dp"
         android:text="OBJECT DETECTION" />
 
     <Button
