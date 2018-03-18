@@ -7,6 +7,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
+import android.os.Handler;
 import android.os.StrictMode;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
@@ -40,8 +41,11 @@ import org.json.JSONObject;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+
+import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class ObjectRecognition extends AppCompatActivity {
 
@@ -53,8 +57,11 @@ public class ObjectRecognition extends AppCompatActivity {
     String str,item;
 
     Integer userId = 1;
+    Integer flag = 0;
 
     String[] xyzing = {"apple","orange","bananna","carrot"};
+
+
 
 
 
@@ -269,6 +276,16 @@ public class ObjectRecognition extends AppCompatActivity {
 
 
 
+        final SweetAlertDialog comingDialog = new SweetAlertDialog(this,SweetAlertDialog.NORMAL_TYPE)
+                .setTitleText("Hurray")
+                .setContentText("You can have carrots!")
+                .hideConfirmButton();
+
+
+
+
+
+
 
         Ion.with(getApplicationContext())
                 .load(url)
@@ -281,12 +298,31 @@ public class ObjectRecognition extends AppCompatActivity {
 
                         str = result.toString();
                         Log.d("resp",str);
+                        String resp2 = " {\"responses\":[{\"labelAnnotations\":[{\"mid\":\"/m/0fj52s\",\"description\":\"carrot\",\"score\":0.9807567,\"topicality\":0.9807567},{\"mid\":\"/m/0f4s2w\",\"description\":\"vegetable\",\"score\":0.9564303,\"topicality\":0.9564303},{\"mid\":\"/m/02wbm\",\"description\":\"food\",\"score\":0.7437834,\"topicality\":0.7437834}]}]}";
+                        Log.d("resp",resp2);
 
                     }
                 });
 
-        int flag = 0;
+        flag = 0;
         Log.d("length xyz",Integer.toString(xyzing.length));
+
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Log.d("inside","handler");
+                for(int i=0;i<xyzing.length;i++){
+                    if(str.contains(xyzing[i])){
+                        flag = 1;
+                        item = xyzing[i];
+                        break;
+
+                    }
+
+                }
+            }
+        },7000);
 
 //        for(int i=0;i<xyzing.length;i++){
 //            if(str.contains(xyzing[i])){
@@ -298,18 +334,37 @@ public class ObjectRecognition extends AppCompatActivity {
 //
 //        }
 
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+
+                comingDialog.show();
+            }
+        },3000);
+
+
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                comingDialog.dismiss();
+            }
+        },2000);
+
+
+
         //harcoding here TODO;remove this
         item = "carrot";
 
 
-        if(flag == 1){
+//        if(flag == 1){
 
 
             Log.d("elementdfound","........");
 
             UrlClass urlClass = new UrlClass();
             String rootUrl = urlClass.getUrl();
-            String JSON_URL =rootUrl + "/recs/object/" + item + "?id=" + userId;
+            final String JSON_URL =rootUrl + "/recs/object/" + item + "?id=" + Integer.toString(userId);
             Log.d("completeUrl",JSON_URL);
 
 
@@ -320,10 +375,28 @@ public class ObjectRecognition extends AppCompatActivity {
 
                             try {
 
-                                JSONObject obj = new JSONObject(response);
+                                JSONArray arr = new JSONArray(response);
 
                                 Log.d("test","success");
-                                Log.d("sample",obj.toString());
+                                Log.d("sample",arr.toString());
+
+                                JSONObject obj1 = new JSONObject(arr.get(0).toString());
+                                Log.d("obj1 length",Integer.toString(obj1.length()));
+
+
+                               JSONObject obj2 = new JSONObject(obj1.get("rec").toString());
+                               Log.d("obj2 length",Integer.toString(obj2.length()));
+
+                               String status = obj2.get("status").toString();
+                               Log.d("Status",status);
+                               String food = obj2.get("food").toString();
+                               Log.d("food",food);
+
+                               if(food.contains(item) && status.equals("true")){
+                                   //can have
+                               }else{
+                                   //cannot have
+                               }
 
                             } catch (JSONException e) {
                                 e.printStackTrace();
@@ -344,7 +417,7 @@ public class ObjectRecognition extends AppCompatActivity {
             requestQueue.add(stringRequest);
 
 
-        }
+//        }
 
     }
 
