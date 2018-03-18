@@ -59,7 +59,7 @@ public class ObjectRecognition extends AppCompatActivity {
     Integer userId = 1;
     Integer flag = 0;
 
-    String[] xyzing = {"apple","orange","bananna","carrot"};
+    String[] xyzing = {"beef liver","sweet potato","bananna","carrots"};
 
 
 
@@ -459,8 +459,6 @@ public class ObjectRecognition extends AppCompatActivity {
 
             }
         }
-
-
 
             if(flag == 1){
 
