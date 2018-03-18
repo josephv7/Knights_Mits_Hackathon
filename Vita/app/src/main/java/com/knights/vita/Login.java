@@ -44,7 +44,7 @@ public class Login extends AppCompatActivity {
                         if(u.equals(user[i])){
                             flag = 1;
                             if(p.equals(pass[i])){
-                                Intent objectIntent = new Intent(Login.this,ObjectRecognition.class);
+                                Intent objectIntent = new Intent(Login.this,Home.class);
                                 startActivity(objectIntent);
                                 break;
                             }else{
