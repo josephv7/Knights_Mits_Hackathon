@@ -1,6 +1,7 @@
 package com.knights.vita;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -19,6 +20,9 @@ public class Login extends AppCompatActivity {
     int flag = 0;
     String u,p;
 
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,6 +32,9 @@ public class Login extends AppCompatActivity {
         userName = (EditText) findViewById(R.id.username);
         passWord = (EditText) findViewById(R.id.password);
         login = (Button) findViewById(R.id.button);
+
+        sharedPreferences = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
+        editor = sharedPreferences.edit();
 
 
         login.setOnClickListener(new View.OnClickListener() {
@@ -44,6 +51,11 @@ public class Login extends AppCompatActivity {
                         if(u.equals(user[i])){
                             flag = 1;
                             if(p.equals(pass[i])){
+
+                                editor.putString("name",u);
+                                editor.putString("number",p);
+                                editor.commit();
+
                                 Intent objectIntent = new Intent(Login.this,Home.class);
                                 startActivity(objectIntent);
                                 break;
