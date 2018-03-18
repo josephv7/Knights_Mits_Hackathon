@@ -3,13 +3,13 @@ const recommendations = {
     0: {
       text:
         "Have more food items like Beef Liver, Carrots, Sweet Potato that have high Vitamin A",
-      food: ["Beef Liver", "Carrots", "Sweet Potato"],
+      food: ["Beef Liver", "Carrot", "Sweet Potato"],
       status: true
     },
     1: {
       text:
         "Have more food items like Beef Liver, Carrots, Sweet Potato that have high Vitamin A",
-      food: ["Beef Liver", "Carrots", "Sweet Potato"],
+      food: ["Beef Liver", "Carrot", "Sweet Potato"],
       status: true
     },
     2: {
@@ -20,7 +20,7 @@ const recommendations = {
     3: {
       text:
         "Have less food items with high Vitamin A content like Beef Liver, Carrots, Sweet Potato",
-      food: ["Beef Liver", "Carrots", "Sweet Potato"],
+      food: ["Beef Liver", "Carrot", "Sweet Potato"],
       status: false
     },
     4: {
