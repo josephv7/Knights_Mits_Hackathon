@@ -64,9 +64,9 @@ public class Fit extends AppCompatActivity {
         // screen, as well as to adb logcat.
         initializeLogging();
 
-        button = (Button) findViewById(R.id.button);
-        targetButton = (Button)findViewById(R.id.targetButton);
-        totalText = (TextView)findViewById(R.id.total);
+//        button = (Button) findViewById(R.id.button);
+//        targetButton = (Button)findViewById(R.i.targetButton);
+//        totalText = (TextView)findViewById(R.id.total);
 
 
         targetButton.setOnClickListener(new View.OnClickListener() {
@@ -208,14 +208,14 @@ public class Fit extends AppCompatActivity {
         MessageOnlyLogFilter msgFilter = new MessageOnlyLogFilter();
         logWrapper.setNext(msgFilter);
         // On screen logging via a customized TextView.
-        LogView logView = (LogView) findViewById(R.id.sample_logview);
+//        LogView logView = (LogView) findViewById(R.id.sample_logview);
 
         // Fixing this lint error adds logic without benefit.
         // noinspection AndroidLintDeprecation
-        logView.setTextAppearance(R.style.Log);
+//        logView.setTextAppearance(R.style.Log);
 
-        logView.setBackgroundColor(Color.WHITE);
-        msgFilter.setNext(logView);
+//        logView.setBackgroundColor(Color.WHITE);
+//        msgFilter.setNext(logView);
         Log.i(TAG, "Ready");
     }
 

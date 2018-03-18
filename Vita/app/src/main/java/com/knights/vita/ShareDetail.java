@@ -44,7 +44,7 @@ public class ShareDetail extends AppCompatActivity {
             public void onClick(View view) {
 
                 UrlClass url = new UrlClass();
-                String finalUrl = url.getUrl() + "/share/" + doctorId + "?" + Integer.toString(userId);
+                String finalUrl = url.getUrl() + "/share/" + doctorId + "?id=" + Integer.toString(userId);
                 Log.d("finalUrl",finalUrl);
 
 

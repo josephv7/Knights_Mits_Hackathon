@@ -13,27 +13,36 @@
         android:id="@+id/button"
         android:text="Read Data"/>
 
-    <TextView
+
+
+
+    <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/total"/>
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Set Target"
-        android:id="@+id/targetButton"/>
-
-
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/start" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="from" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/to"/>
+    </LinearLayout>
 
     <!--<ScrollView-->
-        <!--android:layout_width="fill_parent"-->
-        <!--android:layout_height="fill_parent">-->
-        <!--<logger.LogView-->
-            <!--android:id="@+id/sample_logview"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:scrollbars="vertical" />-->
+    <!--android:layout_width="fill_parent"-->
+    <!--android:layout_height="fill_parent">-->
+    <!--<logger.LogView-->
+    <!--android:id="@+id/sample_logview"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:scrollbars="vertical" />-->
     <!--</ScrollView>-->
 
 
