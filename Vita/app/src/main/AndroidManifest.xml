@@ -32,6 +32,7 @@
         <activity android:name=".Splash" />
         <activity android:name=".GetGeneData" />
         <activity android:name=".Fit"></activity>
+
     </application>
 
 </manifest>
