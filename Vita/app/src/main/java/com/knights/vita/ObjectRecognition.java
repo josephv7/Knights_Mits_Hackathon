@@ -57,6 +57,7 @@ public class ObjectRecognition extends AppCompatActivity {
     String str,item;
 
     Integer userId = 1;
+    Integer flag = 0;
 
     String[] xyzing = {"apple","orange","bananna","carrot"};
 
@@ -303,8 +304,25 @@ public class ObjectRecognition extends AppCompatActivity {
                     }
                 });
 
-        int flag = 0;
+        flag = 0;
         Log.d("length xyz",Integer.toString(xyzing.length));
+
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Log.d("inside","handler");
+                for(int i=0;i<xyzing.length;i++){
+                    if(str.contains(xyzing[i])){
+                        flag = 1;
+                        item = xyzing[i];
+                        break;
+
+                    }
+
+                }
+            }
+        },7000);
 
 //        for(int i=0;i<xyzing.length;i++){
 //            if(str.contains(xyzing[i])){
@@ -373,6 +391,12 @@ public class ObjectRecognition extends AppCompatActivity {
                                Log.d("Status",status);
                                String food = obj2.get("food").toString();
                                Log.d("food",food);
+
+                               if(food.contains(item) && status.equals("true")){
+                                   //can have
+                               }else{
+                                   //cannot have
+                               }
 
                             } catch (JSONException e) {
                                 e.printStackTrace();
