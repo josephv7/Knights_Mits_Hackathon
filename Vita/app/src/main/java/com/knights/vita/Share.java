@@ -45,26 +45,17 @@ public class Share extends AppCompatActivity {
 
         context = getApplicationContext();
 
-
         shareData = (Button)findViewById(R.id.shareData);
-
-
 
         final IntentIntegrator integrator = new IntentIntegrator(this);
         integrator.setOrientationLocked(true);
         integrator.setBeepEnabled(false);
 
-
-
         shareData.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-
-
                 integrator.initiateScan();
-
-
 
             }
         });
