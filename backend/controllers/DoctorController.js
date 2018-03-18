@@ -18,7 +18,7 @@ class DoctorController {
       const collection = database.collection("doctor");
       collection.findOne({ docId: docId }, (error, result) => {
         if (error) throw error;
-        if (!result.userId) {
+        if (result.userId) {
           res.json({ status: true, userId: result.userId });
         } else {
           res.json({ status: false });
