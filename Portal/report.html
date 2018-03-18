@@ -9,16 +9,23 @@
     <title>Report</title>
 </head>
 <body>
+    <style>.card {
+        margin: 0 auto; /* Added */
+        float: none; /* Added */
+        margin-bottom: 10px; /* Added */
+            
+    }
+     body{
+        background-color: #eaecef;
+    }
+     </style>
 <h1 class="text-center">Health Report</h1>
               <div id="name"></div>
 
 <script>
-    
-
-     //[{"_id":"5aaca2778eba35858f2e447a","phenotype":{"url_name":"vitamin-a","display_name":"Vitamin A","category":"food_and_nutrition"},"population":"european","scores":[{"score":0,"text":"Lower serum level"},{"score":1,"text":"Slightly lower serum level"},{"score":2,"text":"Intermediate"},{"score":3,"text":"Slightly higher serum level"},{"score":4,"text":"Higher serum level"}],"summary":{"score":0,"text":"Lower serum level","warnings":[]}},{"_id":"5aaca2778eba35858f2e447b","phenotype":{"url_name":"vitamin-b12","display_name":"Vitamin B12","category":"food_and_nutrition"},"population":"european","scores":[{"score":0,"text":"Lower serum level"},{"score":1,"text":"Slightly lower serum level"},{"score":2,"text":"Intermediate"},{"score":3,"text":"Slightly higher serum level"},{"score":4,"text":"Higher serum level"}],"summary":{"score":1,"text":"Slightly lower serum level","warnings":["reliability is low"]}},{"_id":"5aaca2778eba35858f2e447c","phenotype":{"url_name":"vitamin-d","display_name":"Vitamin D","category":"food_and_nutrition"},"population":"european","scores":[{"score":0,"text":"Lower serum level"},{"score":1,"text":"Slightly lower serum level"},{"score":2,"text":"Intermediate"},{"score":3,"text":"Slightly higher serum level"},{"score":4,"text":"Higher serum level"}],"summary":{"score":2,"text":"Intermediate","warnings":[]}},{"_id":"5aaca2778eba35858f2e447d","phenotype":{"url_name":"vitamin-e","display_name":"Vitamin E","category":"food_and_nutrition"},"population":"european","scores":[{"score":0,"text":"Lower serum level"},{"score":1,"text":"Slightly lower serum level"},{"score":2,"text":"Intermediate"},{"score":3,"text":"Slightly higher serum level"},{"score":4,"text":"Higher serum level"}],"summary":{"score":2,"text":"Intermediate","warnings":[]}},{"_id":"5aaca2778eba35858f2e447e","phenotype":{"url_name":"iron","display_name":"Iron","category":"food_and_nutrition"},"population":"european","scores":[{"score":0,"text":"Lower serum level"},{"score":1,"text":"Slightly lower serum level"},{"score":2,"text":"Intermediate"},{"score":3,"text":"Slightly higher serum level"},{"score":4,"text":"Higher serum level"}],"summary":{"score":2,"text":"Intermediate","warnings":[]}}];
+    //[{"_id":"5aaca2778eba35858f2e447a","phenotype":{"url_name":"vitamin-a","display_name":"Vitamin A","category":"food_and_nutrition"},"population":"european","scores":[{"score":0,"text":"Lower serum level"},{"score":1,"text":"Slightly lower serum level"},{"score":2,"text":"Intermediate"},{"score":3,"text":"Slightly higher serum level"},{"score":4,"text":"Higher serum level"}],"summary":{"score":0,"text":"Lower serum level","warnings":[]}},{"_id":"5aaca2778eba35858f2e447b","phenotype":{"url_name":"vitamin-b12","display_name":"Vitamin B12","category":"food_and_nutrition"},"population":"european","scores":[{"score":0,"text":"Lower serum level"},{"score":1,"text":"Slightly lower serum level"},{"score":2,"text":"Intermediate"},{"score":3,"text":"Slightly higher serum level"},{"score":4,"text":"Higher serum level"}],"summary":{"score":1,"text":"Slightly lower serum level","warnings":["reliability is low"]}},{"_id":"5aaca2778eba35858f2e447c","phenotype":{"url_name":"vitamin-d","display_name":"Vitamin D","category":"food_and_nutrition"},"population":"european","scores":[{"score":0,"text":"Lower serum level"},{"score":1,"text":"Slightly lower serum level"},{"score":2,"text":"Intermediate"},{"score":3,"text":"Slightly higher serum level"},{"score":4,"text":"Higher serum level"}],"summary":{"score":2,"text":"Intermediate","warnings":[]}},{"_id":"5aaca2778eba35858f2e447d","phenotype":{"url_name":"vitamin-e","display_name":"Vitamin E","category":"food_and_nutrition"},"population":"european","scores":[{"score":0,"text":"Lower serum level"},{"score":1,"text":"Slightly lower serum level"},{"score":2,"text":"Intermediate"},{"score":3,"text":"Slightly higher serum level"},{"score":4,"text":"Higher serum level"}],"summary":{"score":2,"text":"Intermediate","warnings":[]}},{"_id":"5aaca2778eba35858f2e447e","phenotype":{"url_name":"iron","display_name":"Iron","category":"food_and_nutrition"},"population":"european","scores":[{"score":0,"text":"Lower serum level"},{"score":1,"text":"Slightly lower serum level"},{"score":2,"text":"Intermediate"},{"score":3,"text":"Slightly higher serum level"},{"score":4,"text":"Higher serum level"}],"summary":{"score":2,"text":"Intermediate","warnings":[]}}];
     // for(var k=0;k<traitText.length;k++)
     // {
-      
     //     var objArray=traitText[k].summary[k];
     //     console.log(objArray);
     //     for ( var key in objArray) {
@@ -26,55 +33,60 @@
     //         console.log(sValue);
     //     }
     // }
-   
+    var progressbarbegin = "<div class='progress'><div class='progress-bar' role='progressbar'";
+    var progressbarend = "aria-valuenow='0' aria-valuemin='0' aria-valuemax='100'></div></div><br>";
+    var progress0 = "style='width: 0%;background-color:#dc3545;'";
+    var progress1 = "style='width: 25%;background-color:#dc3545;'";
+    var progress2 = "style='width: 50%;background-color:#28a745;'";
+    var progress3 = "style='width: 75%;background-color:#dc3545;'";
+    var progress4 = "style='width: 100%;background-color:#dc3545;'";
 
-    var progressbarbegin="<div class='progress'><div class='progress-bar' role='progressbar'";
-    var progressbarend="aria-valuenow='0' aria-valuemin='0' aria-valuemax='100'></div></div><br>";
-    var progress0="style='width: 0%;background-color:#dc3545;'";
-    var progress1="style='width: 25%;background-color:#dc3545;'";
-    var progress2="style='width: 50%;background-color:#6c757d;'";
-    var progress3="style='width: 75%;background-color:#28a745;'";
-    var progress4="style='width: 100%;background-color:#28a745;'";
-  
-    var greenwrap="<div class='card border-success mb-3' style='max-width: 58rem;'><div class='card-body text-success'>";
-    var redwrap="<div class='card border-danger mb-3' style='max-width: 58rem;'><div class='card-body text-danger'>";
-    var yellowwrap="<div class='card borde-secondary mb-3' style='max-width: 58rem;'><div class='card-body text-secondary'>";
-    var cardtitle="<h5 class='card-title'>";
-    var cardtext="</h5><p class='card-text'>";
-    var cardend="</p></div></div>";
-    var traitText= [{"_id":"5aaca2778eba35858f2e447a","phenotype":{"url_name":"vitamin-a","display_name":"Vitamin A","category":"food_and_nutrition"},"population":"european","scores":[{"score":0,"text":"Lower serum level"},{"score":1,"text":"Slightly lower serum level"},{"score":2,"text":"Intermediate"},{"score":3,"text":"Slightly higher serum level"},{"score":4,"text":"Higher serum level"}],"summary":{"score":0,"text":"Lower serum level","warnings":[]}},{"_id":"5aaca2778eba35858f2e447b","phenotype":{"url_name":"vitamin-b12","display_name":"Vitamin B12","category":"food_and_nutrition"},"population":"european","scores":[{"score":0,"text":"Lower serum level"},{"score":1,"text":"Slightly lower serum level"},{"score":2,"text":"Intermediate"},{"score":3,"text":"Slightly higher serum level"},{"score":4,"text":"Higher serum level"}],"summary":{"score":1,"text":"Slightly lower serum level","warnings":["reliability is low"]}},{"_id":"5aaca2778eba35858f2e447c","phenotype":{"url_name":"vitamin-d","display_name":"Vitamin D","category":"food_and_nutrition"},"population":"european","scores":[{"score":0,"text":"Lower serum level"},{"score":1,"text":"Slightly lower serum level"},{"score":2,"text":"Intermediate"},{"score":3,"text":"Slightly higher serum level"},{"score":4,"text":"Higher serum level"}],"summary":{"score":2,"text":"Intermediate","warnings":[]}},{"_id":"5aaca2778eba35858f2e447d","phenotype":{"url_name":"vitamin-e","display_name":"Vitamin E","category":"food_and_nutrition"},"population":"european","scores":[{"score":0,"text":"Lower serum level"},{"score":1,"text":"Slightly lower serum level"},{"score":2,"text":"Intermediate"},{"score":3,"text":"Slightly higher serum level"},{"score":4,"text":"Higher serum level"}],"summary":{"score":2,"text":"Intermediate","warnings":[]}},{"_id":"5aaca2778eba35858f2e447e","phenotype":{"url_name":"iron","display_name":"Iron","category":"food_and_nutrition"},"population":"european","scores":[{"score":0,"text":"Lower serum level"},{"score":1,"text":"Slightly lower serum level"},{"score":2,"text":"Intermediate"},{"score":3,"text":"Slightly higher serum level"},{"score":4,"text":"Higher serum level"}],"summary":{"score":2,"text":"Intermediate","warnings":[]}}];
-   
- // $.ajax({url: "http://10.90.90.19:3000/traits/3", success: function(traitText)
-   // {
-       
-       for (var key in traitText) {
-       console.log(traitText[key].phenotype.url_name)
-       console.log(traitText[key].summary.score);
-       console.log(traitText[key].summary.text);
-      
- 
-   if (traitText[key].summary.score==0) {
-    $("#name").append(redwrap  + cardtitle + traitText[key].phenotype.url_name.toUpperCase() + cardtext + traitText[key].summary.text  + progressbarbegin + progress0 + progressbarend + cardend); 
-   } 
-   else if (traitText[key].summary.score==1) {
-    $("#name").append(redwrap  + cardtitle + traitText[key].phenotype.url_name.toUpperCase() + cardtext + traitText[key].summary.text +  progressbarbegin + progress1 + progressbarend+ cardend); 
-   } 
-   else if (traitText[key].summary.score==2) {
-    $("#name").append(yellowwrap  + cardtitle + traitText[key].phenotype.url_name.toUpperCase() + cardtext + traitText[key].summary.text +  progressbarbegin + progress2 + progressbarend)+ cardend;
-   } 
-   else if(traitText[key].summary.score>2) {
-       $("#name").append(greenwrap  + cardtitle + traitText[key].phenotype.url_name.toUpperCase() + cardtext + traitText[key].summary.text +  progressbarbegin + progress3 + progressbarend+ cardend);   
-   }else {
-    $("#name").append(greenwrap  + cardtitle + traitText[key].phenotype.url_name.toUpperCase() + cardtext + traitText[key].summary.text + progressbarbegin + progress4 + progressbarend+ cardend); 
-   }
-   }
-  // }});
+    var greenwrap = "<div class='card border-success mb-3' style='max-width: 58rem;'><div class='card-body text-success'>";
+    var redwrap = "<div class='card border-danger mb-3' style='max-width: 58rem;'><div class='card-body text-danger'>";
+    var yellowwrap = "<div class='card borde-secondary mb-3' style='max-width: 58rem;'><div class='card-body text-secondary'>";
+    var cardtitle = "<h5 class='card-title'>";
+    var cardtext = "</h5><p class='card-text'>";
+    var cardend = "</p></div></div>";
+    //  var traitText= [{"_id":"5aaca2778eba35858f2e447a","phenotype":{"url_name":"vitamin-a","display_name":"Vitamin A","category":"food_and_nutrition"},"population":"european","scores":[{"score":0,"text":"Lower serum level"},{"score":1,"text":"Slightly lower serum level"},{"score":2,"text":"Intermediate"},{"score":3,"text":"Slightly higher serum level"},{"score":4,"text":"Higher serum level"}],"summary":{"score":0,"text":"Lower serum level","warnings":[]}},{"_id":"5aaca2778eba35858f2e447b","phenotype":{"url_name":"vitamin-b12","display_name":"Vitamin B12","category":"food_and_nutrition"},"population":"european","scores":[{"score":0,"text":"Lower serum level"},{"score":1,"text":"Slightly lower serum level"},{"score":2,"text":"Intermediate"},{"score":3,"text":"Slightly higher serum level"},{"score":4,"text":"Higher serum level"}],"summary":{"score":1,"text":"Slightly lower serum level","warnings":["reliability is low"]}},{"_id":"5aaca2778eba35858f2e447c","phenotype":{"url_name":"vitamin-d","display_name":"Vitamin D","category":"food_and_nutrition"},"population":"european","scores":[{"score":0,"text":"Lower serum level"},{"score":1,"text":"Slightly lower serum level"},{"score":2,"text":"Intermediate"},{"score":3,"text":"Slightly higher serum level"},{"score":4,"text":"Higher serum level"}],"summary":{"score":2,"text":"Intermediate","warnings":[]}},{"_id":"5aaca2778eba35858f2e447d","phenotype":{"url_name":"vitamin-e","display_name":"Vitamin E","category":"food_and_nutrition"},"population":"european","scores":[{"score":0,"text":"Lower serum level"},{"score":1,"text":"Slightly lower serum level"},{"score":2,"text":"Intermediate"},{"score":3,"text":"Slightly higher serum level"},{"score":4,"text":"Higher serum level"}],"summary":{"score":2,"text":"Intermediate","warnings":[]}},{"_id":"5aaca2778eba35858f2e447e","phenotype":{"url_name":"iron","display_name":"Iron","category":"food_and_nutrition"},"population":"european","scores":[{"score":0,"text":"Lower serum level"},{"score":1,"text":"Slightly lower serum level"},{"score":2,"text":"Intermediate"},{"score":3,"text":"Slightly higher serum level"},{"score":4,"text":"Higher serum level"}],"summary":{"score":2,"text":"Intermediate","warnings":[]}}];
+    var urlvar = "http://10.90.101.150:3000/";
+
+    var traitsnum = "traits/1";
+
+        var checkstatus = urlvar + "share/check/abcd";
+
+        $.ajax({
+                url: checkstatus,
+                success: function(resultstatus) {
+                    if (resultstatus.status) {
+                        $.ajax({
+                            url: urlvar + traitsnum,
+                            success: function(traitText) {
+                                for (var key in traitText) {
+                                    // console.log(traitText[key].phenotype.url_name);
+                                    // console.log(traitText[key].summary.score);
+                                    // console.log(traitText[key].summary.text);
+                                    if (traitText[key].summary.score == 0) {
+                                        $("#name").append(redwrap + cardtitle + traitText[key].phenotype.url_name.toUpperCase() + cardtext + traitText[key].summary.text + progressbarbegin + progress0 + progressbarend + cardend);
+                                    } else if (traitText[key].summary.score == 1) {
+                                        $("#name").append(redwrap + cardtitle + traitText[key].phenotype.url_name.toUpperCase() + cardtext + traitText[key].summary.text + progressbarbegin + progress1 + progressbarend + cardend);
+                                    } else if (traitText[key].summary.score == 2) {
+                                        $("#name").append(greenwrap + cardtitle + traitText[key].phenotype.url_name.toUpperCase() + cardtext + traitText[key].summary.text + progressbarbegin + progress2 + progressbarend + cardend);
+                                    } else if (traitText[key].summary.score > 2) {
+                                        $("#name").append(redwrap + cardtitle + traitText[key].phenotype.url_name.toUpperCase() + cardtext + traitText[key].summary.text + progressbarbegin + progress3 + progressbarend + cardend);
+                                    } else {
+                                        $("#name").append(redwrap + cardtitle + traitText[key].phenotype.url_name.toUpperCase() + cardtext + traitText[key].summary.text + progressbarbegin + progress4 + progressbarend + cardend);
+                                    }
+                                }
+                            }
+                        });
+
+                        clearInterval(interval);
+                    }
+                }
+            });
+        
 </script>
-<style>.card {
-        margin: 0 auto; /* Added */
-        float: none; /* Added */
-        margin-bottom: 10px; /* Added */
-}</style>
+
 
 </body>
 </html>
