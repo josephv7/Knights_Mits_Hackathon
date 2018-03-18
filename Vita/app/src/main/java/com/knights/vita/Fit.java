@@ -52,9 +52,7 @@ public class Fit extends AppCompatActivity {
     public static final String TAG = "StepCounter";
     private static final int REQUEST_OAUTH_REQUEST_CODE = 0x1001;
 
-    Button button,targetButton;
 
-    TextView totalText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,17 +62,6 @@ public class Fit extends AppCompatActivity {
         // screen, as well as to adb logcat.
         initializeLogging();
 
-        button = (Button) findViewById(R.id.button);
-        targetButton = (Button)findViewById(R.id.targetButton);
-        totalText = (TextView)findViewById(R.id.total);
-
-
-        targetButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
 
 
 
@@ -126,17 +113,7 @@ public class Fit extends AppCompatActivity {
 
 
 
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                readData();
-//                accessGoogleFit();
-//                readHistoryData();
 
-
-
-            }
-        });
 
     }
 
@@ -184,7 +161,6 @@ public class Fit extends AppCompatActivity {
                                                 ? 0
                                                 : dataSet.getDataPoints().get(0).getValue(Field.FIELD_STEPS).asInt();
                                 Log.i(TAG, "Total steps: " + total);
-                                totalText.setText(Long.toString(total));
                             }
                         })
                 .addOnFailureListener(
@@ -387,7 +363,9 @@ public class Fit extends AppCompatActivity {
 
         java.text.DateFormat dateFormat = getDateInstance();
         Log.i(TAG, "Range Start: " + dateFormat.format(startTime));
+
         Log.i(TAG, "Range End: " + dateFormat.format(endTime));
+
 
         DataReadRequest readRequest =
                 new DataReadRequest.Builder()
