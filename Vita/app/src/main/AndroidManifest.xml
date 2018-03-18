@@ -24,15 +24,17 @@
             </intent-filter>
         </activity>
         <activity android:name=".ObjectRecognition" />
-        <activity android:name=".Home" /><activity
-        android:name="com.journeyapps.barcodescanner.CaptureActivity"
-        android:screenOrientation="portrait"
-        tools:replace="screenOrientation" />
+        <activity android:name=".Home" />
+        <activity
+            android:name="com.journeyapps.barcodescanner.CaptureActivity"
+            android:screenOrientation="portrait"
+            tools:replace="screenOrientation" />
         <activity android:name=".Login" />
         <activity android:name=".Splash" />
         <activity android:name=".GetGeneData" />
         <activity android:name=".ListActivity" />
-        <activity android:name=".Fit"></activity>
+        <activity android:name=".Fit" />
+        <activity android:name=".ShareDetail"></activity>
     </application>
 
 </manifest>
