@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -20,7 +21,7 @@ import org.json.JSONObject;
 
 public class Home extends AppCompatActivity {
 
-    Button geneData,share,object,fit;
+    ImageButton geneData,share,object,fit;
 
 
     @Override
@@ -28,10 +29,10 @@ public class Home extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        geneData = (Button) findViewById(R.id.geneData);
-        share = (Button)findViewById(R.id.share);
-        object = (Button)findViewById(R.id.object);
-        fit = (Button)findViewById(R.id.fit);
+        geneData = (ImageButton) findViewById(R.id.geneData);
+        share = (ImageButton)findViewById(R.id.share);
+        object = (ImageButton)findViewById(R.id.object);
+        fit = (ImageButton)findViewById(R.id.fit);
 
         geneData.setOnClickListener(new View.OnClickListener() {
             @Override
