@@ -27,7 +27,7 @@
         android:layout_above="@+id/fit"
         android:layout_alignStart="@+id/object"
         android:layout_marginBottom="41dp"
-        android:text="Button"
+        android:text="GENE DATA"
         tools:text="GENE DATA" />
 
     <Button
@@ -37,7 +37,7 @@
         android:layout_alignBottom="@+id/geneData"
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="45dp"
-        android:text="Button"
+        android:text="SHARE"
         tools:text="SHARE" />
 
     <Button
@@ -57,6 +57,6 @@
         android:layout_alignBottom="@+id/object"
         android:layout_alignStart="@+id/share"
         android:layout_marginStart="12dp"
-        android:text="Button"
+        android:text="FITBIT"
         tools:text="FITBIT" />
 </RelativeLayout>
