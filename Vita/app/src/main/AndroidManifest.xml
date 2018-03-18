@@ -16,7 +16,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:icon">
-        <activity android:name=".Splash">
+        <activity android:name=".Fit">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -29,9 +29,10 @@
         android:screenOrientation="portrait"
         tools:replace="screenOrientation" />
         <activity android:name=".Login" />
-        <activity android:name=".GetGeneData" />
         <activity android:name=".ObjectRecognition" />
-        <activity android:name=".Fit"></activity>
+        <activity android:name=".GetGeneData" />
+        <activity android:name=".ShareDetail"/>
+        <activity android:name=".Splash"></activity>
 
     </application>
 
