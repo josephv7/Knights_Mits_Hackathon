@@ -44,8 +44,8 @@ public class Login extends AppCompatActivity {
                         if(u.equals(user[i])){
                             flag = 1;
                             if(p.equals(pass[i])){
-                                Intent homeIntent = new Intent(Login.this,Home.class);
-                                startActivity(homeIntent);
+                                Intent objectIntent = new Intent(Login.this,Home.class);
+                                startActivity(objectIntent);
                                 break;
                             }else{
                                 Toast.makeText(Login.this, "Wrong password", Toast.LENGTH_SHORT).show();
