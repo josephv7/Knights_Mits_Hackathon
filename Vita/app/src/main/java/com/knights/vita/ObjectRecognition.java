@@ -65,6 +65,7 @@ public class ObjectRecognition extends AppCompatActivity {
 
 
 
+
     private int STORAGE_PERMISSION_CODE = 23;
     private int CAMERA_PERMISSION_CODE = 24;
 
@@ -92,6 +93,8 @@ public class ObjectRecognition extends AppCompatActivity {
 
         StrictMode.VmPolicy.Builder builderStrict = new StrictMode.VmPolicy.Builder();
         StrictMode.setVmPolicy(builderStrict.build());
+
+
 
 
         camerButton.setOnClickListener(new View.OnClickListener() {
@@ -286,6 +289,8 @@ public class ObjectRecognition extends AppCompatActivity {
 
 
 
+        Log.d("url",url);
+
 
         Ion.with(getApplicationContext())
                 .load(url)
@@ -301,6 +306,11 @@ public class ObjectRecognition extends AppCompatActivity {
                         String resp2 = " {\"responses\":[{\"labelAnnotations\":[{\"mid\":\"/m/0fj52s\",\"description\":\"carrot\",\"score\":0.9807567,\"topicality\":0.9807567},{\"mid\":\"/m/0f4s2w\",\"description\":\"vegetable\",\"score\":0.9564303,\"topicality\":0.9564303},{\"mid\":\"/m/02wbm\",\"description\":\"food\",\"score\":0.7437834,\"topicality\":0.7437834}]}]}";
                         Log.d("resp",resp2);
 
+
+                        Log.d("before next","......");
+
+                        nextStep();
+
                     }
                 });
 
@@ -308,21 +318,21 @@ public class ObjectRecognition extends AppCompatActivity {
         Log.d("length xyz",Integer.toString(xyzing.length));
 
 
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                Log.d("inside","handler");
-                for(int i=0;i<xyzing.length;i++){
-                    if(str.contains(xyzing[i])){
-                        flag = 1;
-                        item = xyzing[i];
-                        break;
-
-                    }
-
-                }
-            }
-        },7000);
+//        new Handler().postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//                Log.d("inside","handler");
+//                for(int i=0;i<xyzing.length;i++){
+//                    if(str.contains(xyzing[i])){
+//                        flag = 1;
+//                        item = xyzing[i];
+//                        break;
+//
+//                    }
+//
+//                }
+//            }
+//        },7000);
 
 //        for(int i=0;i<xyzing.length;i++){
 //            if(str.contains(xyzing[i])){
@@ -334,93 +344,193 @@ public class ObjectRecognition extends AppCompatActivity {
 //
 //        }
 
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-
-                comingDialog.show();
-            }
-        },3000);
-
-
-
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                comingDialog.dismiss();
-            }
-        },2000);
-
-
-
-        //harcoding here TODO;remove this
-        item = "carrot";
+//        new Handler().postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//
+//                comingDialog.show();
+//            }
+//        },3000);
+//
+//
+//
+//        new Handler().postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//                comingDialog.dismiss();
+//            }
+//        },2000);
+//
+//
+//
+//        //harcoding here TODO;remove this
+//        item = "carrot";
 
 
 //        if(flag == 1){
+///////
 
-
-            Log.d("elementdfound","........");
-
-            UrlClass urlClass = new UrlClass();
-            String rootUrl = urlClass.getUrl();
-            final String JSON_URL =rootUrl + "/recs/object/" + item + "?id=" + Integer.toString(userId);
-            Log.d("completeUrl",JSON_URL);
-
-
-            StringRequest stringRequest = new StringRequest(Request.Method.GET, JSON_URL,
-                    new Response.Listener<String>() {
-                        @Override
-                        public void onResponse(String response) {
-
-                            try {
-
-                                JSONArray arr = new JSONArray(response);
-
-                                Log.d("test","success");
-                                Log.d("sample",arr.toString());
-
-                                JSONObject obj1 = new JSONObject(arr.get(0).toString());
-                                Log.d("obj1 length",Integer.toString(obj1.length()));
-
-
-                               JSONObject obj2 = new JSONObject(obj1.get("rec").toString());
-                               Log.d("obj2 length",Integer.toString(obj2.length()));
-
-                               String status = obj2.get("status").toString();
-                               Log.d("Status",status);
-                               String food = obj2.get("food").toString();
-                               Log.d("food",food);
-
-                               if(food.contains(item) && status.equals("true")){
-                                   //can have
-                               }else{
-                                   //cannot have
-                               }
-
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    },
-                    new Response.ErrorListener() {
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-                            Log.d("here",".....");
-                            Log.d("here",error.toString());
-                            Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
-                        }
-                    });
-
-
-            RequestQueue requestQueue = Volley.newRequestQueue(this);
-            requestQueue.add(stringRequest);
-
+//            Log.d("elementdfound","........");
+//
+//            UrlClass urlClass = new UrlClass();
+//            String rootUrl = urlClass.getUrl();
+//            final String JSON_URL =rootUrl + "/recs/object/" + item + "?id=" + Integer.toString(userId);
+//            Log.d("completeUrl",JSON_URL);
+//
+//
+//            StringRequest stringRequest = new StringRequest(Request.Method.GET, JSON_URL,
+//                    new Response.Listener<String>() {
+//                        @Override
+//                        public void onResponse(String response) {
+//
+//                            try {
+//
+//                                JSONArray arr = new JSONArray(response);
+//
+//                                Log.d("test","success");
+//                                Log.d("sample",arr.toString());
+//
+//                                JSONObject obj1 = new JSONObject(arr.get(0).toString());
+//                                Log.d("obj1 length",Integer.toString(obj1.length()));
+//
+//
+//                               JSONObject obj2 = new JSONObject(obj1.get("rec").toString());
+//                               Log.d("obj2 length",Integer.toString(obj2.length()));
+//
+//                               String status = obj2.get("status").toString();
+//                               Log.d("Status",status);
+//                               String food = obj2.get("food").toString();
+//                               Log.d("food",food);
+//
+//                               if(food.contains(item) && status.equals("true")){
+//                                   //can have
+//                               }else{
+//                                   //cannot have
+//                               }
+//
+//                            } catch (JSONException e) {
+//                                e.printStackTrace();
+//                            }
+//                        }
+//                    },
+//                    new Response.ErrorListener() {
+//                        @Override
+//                        public void onErrorResponse(VolleyError error) {
+//                            Log.d("here",".....");
+//                            Log.d("here",error.toString());
+//                            Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
+//                        }
+//                    });
+//
+//
+//            RequestQueue requestQueue = Volley.newRequestQueue(this);
+//            requestQueue.add(stringRequest);
+/////////
 
 //        }
 
     }
 
+    public void nextStep(){
 
 
-}
+
+        Log.d("inside nextStep",".........");
+
+        final SweetAlertDialog successDialog = new SweetAlertDialog(this,SweetAlertDialog.SUCCESS_TYPE)
+                .setTitleText("Hurray!")
+                .setContentText("You can have the item.")
+                .hideConfirmButton();
+
+        final SweetAlertDialog errorDialog = new SweetAlertDialog(this,SweetAlertDialog.ERROR_TYPE)
+                .setTitleText("Nope")
+                .setContentText("Please refrain from having this food!")
+                .hideConfirmButton();
+
+
+        Log.d("str",str);
+
+
+        for(int i=0;i<xyzing.length;i++) {
+            if (str.contains(xyzing[i])) {
+                flag = 1;
+                item = xyzing[i];
+                break;
+
+            }
+        }
+
+
+
+            if(flag == 1){
+
+
+                Log.d("elementdfound","........");
+
+                UrlClass urlClass = new UrlClass();
+                String rootUrl = urlClass.getUrl();
+                final String JSON_URL =rootUrl + "/recs/object/" + item + "?id=" + Integer.toString(userId);
+                Log.d("completeUrl",JSON_URL);
+
+
+                StringRequest stringRequest = new StringRequest(Request.Method.GET, JSON_URL,
+                        new Response.Listener<String>() {
+                            @Override
+                            public void onResponse(String response) {
+
+                                try {
+
+                                    JSONArray arr = new JSONArray(response);
+
+                                    Log.d("test","success");
+                                    Log.d("sample",arr.toString());
+
+                                    JSONObject obj1 = new JSONObject(arr.get(0).toString());
+                                    Log.d("obj1 length",Integer.toString(obj1.length()));
+
+
+                                    JSONObject obj2 = new JSONObject(obj1.get("rec").toString());
+                                    Log.d("obj2 length",Integer.toString(obj2.length()));
+
+                                    String status = obj2.get("status").toString();
+                                    Log.d("Status",status);
+                                    String food = obj2.get("food").toString();
+                                    String foodLower = food.toLowerCase();
+                                    Log.d("food",food);
+
+                                    if(foodLower.contains(item) && status.equals("true")){
+
+                                        successDialog.show();
+
+                                    }else{
+                                        errorDialog.show();
+                                    }
+
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        },
+                        new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                Log.d("here",".....");
+                                Log.d("here",error.toString());
+                                Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
+                            }
+                        });
+
+
+                RequestQueue requestQueue = Volley.newRequestQueue(this);
+                requestQueue.add(stringRequest);
+
+
+        }
+
+
+            }
+
+    }
+
+
+
