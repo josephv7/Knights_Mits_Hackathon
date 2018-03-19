@@ -78,7 +78,7 @@ $("#text").
 			makeCode();
 		}
     });
-var checkstatus="http://10.90.101.150:3000/share/check/abcd";
+var checkstatus="http://192.168.43.49:3000/share/check/abcd";
 var interval = setInterval(fCall, 2000);
 function fCall() {
     $.ajax({
@@ -86,7 +86,7 @@ function fCall() {
                 success: function(resultstatus) {
                     if (resultstatus.status){
                     clearInterval(interval);
-                    window.location = "report.html?id=1";
+                    window.location = "report.html?id="+resultstatus.userId;
                     }
                  }
             });
