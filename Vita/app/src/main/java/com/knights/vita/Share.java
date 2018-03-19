@@ -2,6 +2,7 @@ package com.knights.vita;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -34,7 +35,8 @@ public class Share extends AppCompatActivity {
     Context context;
     LinearLayout ll;
 
-    Integer userId = 2;
+    Integer userId = 1;
+    SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +46,9 @@ public class Share extends AppCompatActivity {
         ll = (LinearLayout) findViewById(R.id.ll);
 
         context = getApplicationContext();
+
+        sharedPreferences = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
+        userId = sharedPreferences.getInt("userId",0);
 
         shareData = (Button)findViewById(R.id.shareData);
 
@@ -80,54 +85,6 @@ public class Share extends AppCompatActivity {
 
                 passIntent.putExtra("doctorId",result.getContents());
                 startActivity(passIntent);
-
-
-
-
-//                TODO call api here
-
-//                String doctorId = result.getContents();
-//                Toast.makeText(context, doctorId, Toast.LENGTH_SHORT).show();
-//                Log.d("docid",doctorId);
-//
-//
-//                UrlClass url = new UrlClass();
-//                String finalUrl = url.getUrl() + "/share/" + doctorId + "?" + Integer.toString(userId);
-//                Log.d("finalUrl",finalUrl);
-//
-//                StringRequest stringRequest = new StringRequest(Request.Method.GET, finalUrl,
-//                        new Response.Listener<String>() {
-//                            @Override
-//                            public void onResponse(String response) {
-//
-//                                try {
-//
-//                                    JSONObject obj = new JSONObject(response);
-//                                    Log.d("status",obj.get("text").toString());
-//
-//                                } catch (JSONException e) {
-//                                    e.printStackTrace();
-//                                }
-//                            }
-//                        },
-//                        new Response.ErrorListener() {
-//                            @Override
-//                            public void onErrorResponse(VolleyError error) {
-//                                android.util.Log.d("here",".....");
-//                                android.util.Log.d("here",error.toString());
-//                                Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
-//                            }
-//                        });
-//
-//
-//                RequestQueue requestQueue = Volley.newRequestQueue(this);
-//                requestQueue.add(stringRequest);
-//
-//
-//
-//
-
-
 
 
             }

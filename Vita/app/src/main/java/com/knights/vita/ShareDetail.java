@@ -1,6 +1,7 @@
 package com.knights.vita;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -24,7 +25,9 @@ public class ShareDetail extends AppCompatActivity {
     Button yesButton,noButton;
     String doctorId;
 
-    Integer userId = 2;
+    Integer userId = 1;
+
+    SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +36,8 @@ public class ShareDetail extends AppCompatActivity {
 
         yesButton = (Button) findViewById(R.id.yesButton);
         noButton = (Button) findViewById(R.id.noButton);
+        sharedPreferences = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
+        userId = sharedPreferences.getInt("userId",0);
 
 
         Intent newIntent = getIntent();
@@ -78,10 +83,6 @@ public class ShareDetail extends AppCompatActivity {
 
                 RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
                 requestQueue.add(stringRequest);
-
-
-
-
 
 
             }

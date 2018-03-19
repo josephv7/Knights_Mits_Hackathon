@@ -1,6 +1,7 @@
 package com.knights.vita;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -32,13 +33,16 @@ import java.util.List;
 public class GetGeneData extends AppCompatActivity {
 
 
+
     Integer userId = 1;
 
     UrlClass urlClass = new UrlClass();
     String JSON_URL = urlClass.getUrl();
-    String dummyUrl = "http://10.90.90.19:3000/recs/1";
+    String dummyUrl = "http://192.168.43.49:3000/recs/1";
     //finalUrl working
     String finalUrl;
+
+    SharedPreferences sharedPreferences;
 
 
     ArrayList<String> mainList;
@@ -57,6 +61,11 @@ public class GetGeneData extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_get_gene_data);
+
+
+
+        sharedPreferences = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
+        userId = sharedPreferences.getInt("userId",0);
 
 
 
@@ -222,16 +231,7 @@ public class GetGeneData extends AppCompatActivity {
                     LinearLayout ll = (LinearLayout) injector.findViewById(R.id.ll);
                 }
 
-//                final String middleId = data.getUid();
-//                ll.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View view) {
-//
-//                        Intent middleMenIntent = new Intent(MiddleList.this,MiddleDetailed.class);
-//                        middleMenIntent.putExtra("middleId",middleId);
-//                        startActivity(middleMenIntent);
-//                    }
-//                });
+
 
             }
         }).attachTo(recyclerView)

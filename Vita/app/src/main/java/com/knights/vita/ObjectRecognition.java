@@ -2,6 +2,7 @@ package com.knights.vita;
 
 import android.content.ContentResolver;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -63,6 +64,7 @@ public class ObjectRecognition extends AppCompatActivity {
 
 
 
+    SharedPreferences sharedPreferences;
 
 
 
@@ -88,6 +90,9 @@ public class ObjectRecognition extends AppCompatActivity {
 
 
         camerButton = (Button) findViewById(R.id.cameraButton);
+
+        sharedPreferences = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
+        userId = sharedPreferences.getInt("userId",0);
 
 
 
@@ -253,7 +258,7 @@ public class ObjectRecognition extends AppCompatActivity {
         try{
             image.addProperty("content",encodedImage);
             forFeatures.addProperty("type","LABEL_DETECTION");
-            forFeatures.addProperty("maxResults",3);
+            forFeatures.addProperty("maxResults",4);
             features.add(forFeatures);
 
 
@@ -317,117 +322,6 @@ public class ObjectRecognition extends AppCompatActivity {
         flag = 0;
         Log.d("length xyz",Integer.toString(xyzing.length));
 
-
-//        new Handler().postDelayed(new Runnable() {
-//            @Override
-//            public void run() {
-//                Log.d("inside","handler");
-//                for(int i=0;i<xyzing.length;i++){
-//                    if(str.contains(xyzing[i])){
-//                        flag = 1;
-//                        item = xyzing[i];
-//                        break;
-//
-//                    }
-//
-//                }
-//            }
-//        },7000);
-
-//        for(int i=0;i<xyzing.length;i++){
-//            if(str.contains(xyzing[i])){
-//                flag = 1;
-//                item = xyzing[i];
-//                break;
-//
-//            }
-//
-//        }
-
-//        new Handler().postDelayed(new Runnable() {
-//            @Override
-//            public void run() {
-//
-//                comingDialog.show();
-//            }
-//        },3000);
-//
-//
-//
-//        new Handler().postDelayed(new Runnable() {
-//            @Override
-//            public void run() {
-//                comingDialog.dismiss();
-//            }
-//        },2000);
-//
-//
-//
-//        //harcoding here TODO;remove this
-//        item = "carrot";
-
-
-//        if(flag == 1){
-///////
-
-//            Log.d("elementdfound","........");
-//
-//            UrlClass urlClass = new UrlClass();
-//            String rootUrl = urlClass.getUrl();
-//            final String JSON_URL =rootUrl + "/recs/object/" + item + "?id=" + Integer.toString(userId);
-//            Log.d("completeUrl",JSON_URL);
-//
-//
-//            StringRequest stringRequest = new StringRequest(Request.Method.GET, JSON_URL,
-//                    new Response.Listener<String>() {
-//                        @Override
-//                        public void onResponse(String response) {
-//
-//                            try {
-//
-//                                JSONArray arr = new JSONArray(response);
-//
-//                                Log.d("test","success");
-//                                Log.d("sample",arr.toString());
-//
-//                                JSONObject obj1 = new JSONObject(arr.get(0).toString());
-//                                Log.d("obj1 length",Integer.toString(obj1.length()));
-//
-//
-//                               JSONObject obj2 = new JSONObject(obj1.get("rec").toString());
-//                               Log.d("obj2 length",Integer.toString(obj2.length()));
-//
-//                               String status = obj2.get("status").toString();
-//                               Log.d("Status",status);
-//                               String food = obj2.get("food").toString();
-//                               Log.d("food",food);
-//
-//                               if(food.contains(item) && status.equals("true")){
-//                                   //can have
-//                               }else{
-//                                   //cannot have
-//                               }
-//
-//                            } catch (JSONException e) {
-//                                e.printStackTrace();
-//                            }
-//                        }
-//                    },
-//                    new Response.ErrorListener() {
-//                        @Override
-//                        public void onErrorResponse(VolleyError error) {
-//                            Log.d("here",".....");
-//                            Log.d("here",error.toString());
-//                            Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
-//                        }
-//                    });
-//
-//
-//            RequestQueue requestQueue = Volley.newRequestQueue(this);
-//            requestQueue.add(stringRequest);
-/////////
-
-//        }
 
     }
 
@@ -501,6 +395,7 @@ public class ObjectRecognition extends AppCompatActivity {
                                         successDialog.show();
 
                                     }else{
+                                        Log.d("iniside...","else");
                                         errorDialog.show();
                                     }
 
@@ -523,8 +418,10 @@ public class ObjectRecognition extends AppCompatActivity {
                 requestQueue.add(stringRequest);
 
 
-        }
-
+        }else{
+                Log.d("iniside...","else");
+                errorDialog.show();
+            }
 
             }
 

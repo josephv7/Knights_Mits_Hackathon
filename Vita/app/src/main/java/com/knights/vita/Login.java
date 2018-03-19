@@ -9,14 +9,16 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import logger.Log;
+
 public class Login extends AppCompatActivity {
 
     EditText userName,passWord;
     Button login;
     int userid;
 
-    String[] user = {"user1","user2","user3"};
-    String[] pass = {"pass1","pass2","pass3"};
+    String[] user = {"user1","user2","user3","user4","user5"};
+    String[] pass = {"pass1","pass2","pass3","pass4","pass5"};
 
     int flag = 0;
     String u,p;
@@ -36,6 +38,7 @@ public class Login extends AppCompatActivity {
 
         sharedPreferences = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
         editor = sharedPreferences.edit();
+        Log.e("dss-----","-------");
 
 
         login.setOnClickListener(new View.OnClickListener() {
@@ -53,8 +56,11 @@ public class Login extends AppCompatActivity {
                             flag = 1;
                             if(p.equals(pass[i])){
 
+                                Log.e("userId",Integer.toString(userid));
+
                                 switch (u) {
                                     case "user1" : userid = 1;
+                                       // Toast.makeText(Login.this, "1", Toast.LENGTH_SHORT).show();
                                                     break;
 
                                     case "user2" : userid = 2;
@@ -71,7 +77,11 @@ public class Login extends AppCompatActivity {
                                 }
 
                                 editor.putInt("userId", userid);
+                                Log.d("userId",Integer.toString(userid));
                                 editor.commit();
+
+                                userName.setText("");
+                                passWord.setText("");
 
                                 Intent objectIntent = new Intent(Login.this,Home.class);
                                 startActivity(objectIntent);

@@ -77,16 +77,24 @@ public class Fit extends AppCompatActivity {
                         .addDataType(DataType.TYPE_STEP_COUNT_DELTA, FitnessOptions.ACCESS_WRITE)
                         .addDataType(DataType.AGGREGATE_STEP_COUNT_DELTA, FitnessOptions.ACCESS_WRITE)
                         .build();
+
         if (!GoogleSignIn.hasPermissions(GoogleSignIn.getLastSignedInAccount(this), fitnessOptions)) {
             GoogleSignIn.requestPermissions(
                     this,
                     REQUEST_OAUTH_REQUEST_CODE,
                     GoogleSignIn.getLastSignedInAccount(this),
                     fitnessOptions);
+            subscribe();
+
+
+
         } else {
+            subscribe();
             insertData();
             Log.d("calling","insert data");
         }
+
+
 
 
         Fitness.getRecordingClient(this, GoogleSignIn.getLastSignedInAccount(this))
@@ -143,7 +151,7 @@ public class Fit extends AppCompatActivity {
         }
     }
 
-    /** Records step data by requesting a subscription to background step data. */
+
     public void subscribe() {
         // To create a subscription, invoke the Recording API. As soon as the subscription is
         // active, fitness data will start recording.
@@ -162,10 +170,7 @@ public class Fit extends AppCompatActivity {
                         });
     }
 
-    /**
-     * Reads the current daily step total, computed from midnight of the current day on the device's
-     * current timezone.
-     */
+
     private void readData() {
         Fitness.getHistoryClient(this, GoogleSignIn.getLastSignedInAccount(this))
                 .readDailyTotal(DataType.TYPE_STEP_COUNT_DELTA)
@@ -192,7 +197,7 @@ public class Fit extends AppCompatActivity {
 
 
 
-    /** Initializes a custom log class that outputs both to in-app targets and logcat. */
+
     private void initializeLogging() {
         // Wraps Android's native log framework.
         LogWrapper logWrapper = new LogWrapper();
@@ -239,11 +244,7 @@ public class Fit extends AppCompatActivity {
         response.addOnSuccessListener(new OnSuccessListener<DataReadResponse>() {
             @Override
             public void onSuccess(DataReadResponse dataReadResponse) {
-//                List<DataSet> dataSets = dataReadResponse.getResult().getDataSets();
-//
-//                Log.d("inside size",Integer.toString(dataSets.size()));
 
-//                dumpDataSet(dataSets.get(0));
             }
         });
 
@@ -303,12 +304,10 @@ public class Fit extends AppCompatActivity {
     private Task<Void> insertData() {
 
         Log.d("inisde","insert data");
-        // Create a new dataset and insertion request.
         DataSet dataSet = insertFitnessData();
 
         Log.d("after insertfitnessdata",dataSet.toString());
 
-        // Then, invoke the History API to insert the data.
         Log.i(TAG, "Inserting the dataset in the History API.");
         return Fitness.getHistoryClient(this, GoogleSignIn.getLastSignedInAccount(this))
                 .insertData(dataSet)
@@ -327,10 +326,8 @@ public class Fit extends AppCompatActivity {
     }
 
     private Task<DataReadResponse> readHistoryData() {
-        // Begin by creating the query.
         DataReadRequest readRequest = queryFitnessData();
 
-        // Invoke the History API to fetch the data with the query
         return Fitness.getHistoryClient(this, GoogleSignIn.getLastSignedInAccount(this))
                 .readData(readRequest)
                 .addOnSuccessListener(
